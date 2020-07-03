@@ -59,5 +59,5 @@ specific to Rakudo. A new compiler might have the very same things implemented
 differently in the future. Whenever such case would be encountered in this
 series I'll be trying to remember about leaving special warnings.
 
-And as I don't want make people bored from the start, this is perhaps the best
-moment wrap it up. Buckle up and let's drive!
+And as I don't want to get people bored from the start, this is perhaps the best
+moment to call it a day. Buckle up and let's drive!
