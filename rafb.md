@@ -6,6 +6,5 @@ description: >-
     and quirks.
 ---
 {% for post in site.rafb-publication %}
-{% comment %}1. [{{ post.title }}]({{ post.url }}){% endcomment %}
 {% include archive-single.html %}
 {% endfor %}
