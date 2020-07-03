@@ -1,5 +1,6 @@
 ---
-title: "Everything Is An Object. MOP."
+title: Everything Is An Object. MOP.
+tags: Raku publication
 ---
 
-To be written...
+This article is yet to be written.
