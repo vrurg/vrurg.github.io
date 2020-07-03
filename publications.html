@@ -2,13 +2,22 @@
 layout: single
 title: "Article Index"
 ---
+<ul>
 {% for collection in site.collections %}
     {% if collection.label contains "-publication" %}
         {% capture article_source %}{{ collection.label | replace: "-publication", ".md" }}{% endcapture %}
         {% for publ in site.pages %}
             {% if publ.name == article_source %}
-- [{{ publ.title }}](/{{ publ.name | replace: ".md", ".html" }})
+<li>
+    <h2 class="archive__item-title" itemprop="headline">
+    <a rel="permalink" href="/{{ publ.name | replace: ".md", ".html" }}">{{ publ.title }}</a>
+    </h2>
+    {% if publ.description %}
+    <p class="archive__item-excerpt">{{ publ.description }}</p>
+    {% endif %}
+</li>
             {% endif %}
         {% endfor %}
     {% endif %}
 {% endfor %}
+</ul>
