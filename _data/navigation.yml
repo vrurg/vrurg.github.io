@@ -9,7 +9,7 @@ default:
       url: "/publications.html"
       children:
         - title: "Advanced Raku For Beginners"
-          url: "/rafb.html"
+          url: "/arfb.html"
     - title: "PROJECTS"
       children:
         - title: "Vikna"

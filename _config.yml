@@ -91,7 +91,7 @@ author:
           url: "mailto:vrurg@cpan.org"
 
 collections:
-    rafb-publication:
+    arfb-publication:
       output: true
       permalink: /:collection/:path/
 
@@ -137,7 +137,7 @@ defaults:
         show_overlay_excerpt: false
   - scope:
       path: ""
-      type: rafb-publication
+      type: arfb-publication
     values:
       layout: chapter
       toc: true
