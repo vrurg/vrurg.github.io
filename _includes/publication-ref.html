@@ -1,0 +1,21 @@
+{% if page.collection contains '-publication' %}
+{% capture article_source %}{{ page.collection | replace: "-publication", ".md" }}{% endcapture %}
+{% if page.pub_ref_icon %}
+{% assign pub_ref_icon = page.pub_ref_icon %}
+{% elsif layout.pub_ref_icon %}
+{% assign pub_ref_icon = layout.pub_ref_icon %}
+{% endif %}
+{% for publ in site.pages %}
+{% if publ.name == article_source %}
+<a href="/{{ publ.name | replace: ".md", ".html" }}">
+    {% if pub_ref_icon != empty %}
+    <span class="fas fa-{{ pub_ref_icon }}">
+    {% endif %}
+    {{ publ.title }}
+    {% if pub_ref_icon != empty %}
+    </span>
+    {% endif %}
+</a>
+{% endif %}
+{% endfor %}
+{% endif %}

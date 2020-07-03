@@ -1,0 +1,26 @@
+main:
+    - title: "Home"
+      url: "/"
+    - title: "Publications"
+      url: "/publications.html"
+
+default:
+    - title: "PUBLICATIONS"
+      url: "/publications.html"
+      children:
+        - title: "Advanced Raku For Beginners"
+          url: "/rafb.html"
+    - title: "PROJECTS"
+      children:
+        - title: "Vikna"
+          icon: "fab fa-fw fa-github"
+          url: "https://github.com/vrurg/raku-Vikna"
+        - title: "Concurrent::PChannel"
+          icon: "fab fa-fw fa-github"
+          url: "https://github.com/vrurg/raku-Concurrent-PChannel"
+        - title: "Test::Async"
+          icon: "fab fa-fw fa-github"
+          url: "https://github.com/vrurg/raku-Test-Async"
+        - title: "AttrX::Mooish"
+          icon: "fab fa-fw fa-github"
+          url: "https://github.com/vrurg/raku-AttrX-Mooish"

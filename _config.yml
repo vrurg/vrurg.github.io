@@ -8,29 +8,92 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
+strict_front_matter: true
+liquid:
+  error_mode: strict
+
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
+title: LFlat, The Home of Vrurg
+subtitle: Raku and anything related
+name: Vadim Belman
+email: vrurg@cpan.org
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+    Still experimenting with all this.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: vrurg
-#github_username:  vrurg
+github_username:  vrurg
 facebook_username: vrurg
 
 # Build settings
 markdown: kramdown
-#theme: minima
-remote-theme: "SeraphRoy/GaeBlogx"
+remote_theme: "mmistakes/minimal-mistakes"
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-archives
+  - jemoji
+  - jekyll-include-cache
+
+minimal_mistakes_skin: "dirt" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+
+permalink: /:year/:month/:day/:title
+
+category_archive:
+  type: jekyll-archives
+  path: /categories/
+tag_archive:
+  type: jekyll-archives
+  path: /tags/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
+
+#logo: "/assets/images/IMG_0775.png"
+#teaser: "/assets/images/IMG_0775.png"
+
+paginate: 6
+paginate_path: /page:num/
+timezone: America/New_York
+search: true
+og_image: /assets/images/Camelia-200px-SQUARE.png
+search_provider: google
+google:
+    search_engine_id: "001759806479067407020:afovyi4lofs"
+
+author:
+    name: "Vadim Belman"
+    avatar: "https://en.gravatar.com/userimage/24048308/cf7fc30c10cd1f33b883a7ab855d3bd6.jpg?size=200"
+    location: "FL, USA"
+    links:
+        - label: "GitHub"
+          icon: "fab fa-fw fa-github"
+          url: "https://github.com/vrurg"
+        - label: "Facebook"
+          icon: "fab fa-fw fa-facebook"
+          url: "https://facebook.com/vrurg"
+        - label: "Email"
+          icon: "fa fa-envelope"
+          url: "mailto:vrurg@cpan.org"
+
+collections:
+    rafb-publication:
+      output: true
+      permalink: /:collection/:path/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -43,3 +106,47 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      author_profile: true
+      sidebar:
+        nav: default
+      header:
+        overlay_image: "/assets/images/IMG_0775.png"
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single-lflat
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      author_profile: true
+      toc_icon: book
+      excerpt_separator: <!--more-->
+      sidebar:
+        nav: default
+      header:
+        overlay_image: /assets/images/IMG_0775.png
+        logo: "https://github.com/Raku/marketing/raw/master/LOGOs/Camelia/Primary--1533512212/Camelia-200px-SQUARE.png"
+        show_overlay_excerpt: false
+  - scope:
+      path: ""
+      type: rafb-publication
+    values:
+      layout: chapter
+      toc: true
+      read_time: true
+      toc_icon: book
+      author_profile: true
+      sidebar:
+        nav: default
+      header:
+        overlay_image: /assets/images/IMG_0775.png
+        logo: "https://github.com/Raku/marketing/raw/master/LOGOs/Camelia/Primary--1533512212/Camelia-200px-SQUARE.png"
+        show_overlay_excerpt: false
