@@ -61,3 +61,9 @@ series I'll be trying to remember about leaving special warnings.
 
 And as I don't want to get people bored from the start, this is perhaps the best
 moment to call it a day. Buckle up and let's drive!
+
+# One More Thing
+
+Use the [documentation](https://docs.raku.org/), Luke! Because it is and will
+always be The Power. But as no Power can be ubiquitous there're is always
+a story to tell!
