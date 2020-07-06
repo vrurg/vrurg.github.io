@@ -140,6 +140,10 @@ from the point of view of being an instance of `Perl6::Metamodel::ClassHOW` is a
 meta-object. So, by using either of the terms I define the context in which the
 object is beign considered.
 
+**IMPORTANT!** In the last paragraph I have commited a big factual error. A type
+object is not the same with its meta-object! I'll get this corrected ASAP. My
+apologies for the confusion.
+
 Really, this might be confusing at first. Darn it, it is confusing! We must
 start thinking of it in terms that `Int` defines what an integer number is
 capable of; `Str` defines how strings behave; whereas `ClassHOW` defines how
