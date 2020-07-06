@@ -2,10 +2,9 @@
 title: New Role Of Roles In Raku
 toc: true
 toc_icon: book
-tags:
-  - Raku
-  - roles
-  - MOP
+tags: Raku roles MOP
+header: 
+  teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---
 
 My morning started today with a cup of cold tea and an IRC request. The latter was coming from Elizabeth Mattijsen asking to write a paragraph on my recently merged work on Raku roles. 

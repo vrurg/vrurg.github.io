@@ -2,11 +2,7 @@
 title: Class, Role And Attribute Accessor in Raku
 toc: true
 toc_icon: book
-tags:
-  - Raku
-  - roles
-  - classes
-  - MOP
+tags: Raku role class MOP
 ---
 Quite ingenious title I used here, but it's precise. 
 
