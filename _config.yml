@@ -92,6 +92,11 @@ author:
           icon: "fa fa-envelope"
           url: "mailto:vrurg@cpan.org"
 
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "vrurg-github-io"
+
 collections:
     arfb-publication:
       output: true
@@ -140,6 +145,7 @@ defaults:
       toc_icon: book
       excerpt_separator: <!--more-->
       permalink: /:year/:month/:day/:title
+      comments: true
       sidebar:
         nav: default
       header:
@@ -153,8 +159,10 @@ defaults:
       toc: true
       read_time: true
       toc_icon: book
+      toc_sticky: true
       author_profile: true
       excerpt_separator: <!--more-->
+      comments: true
       sidebar:
         nav: default
       header:
