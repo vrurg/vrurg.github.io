@@ -96,8 +96,8 @@ the statement is wrong!
 
 Of course, it _is_ a type! But not only. In Raku it is more correct to use a
 term _type object_. Depending on context, `Int` is a type when, say, used in
-a variable or parameter declaration. Moreover, we could say that `Int` is an
-object of type `Int` because:
+a variable or parameter declaration. Moreover, up to some extent we could say
+that `Int` is an object of type `Int` because:
 
 ```
 Int.WHAT === Int # True
@@ -106,49 +106,56 @@ Int.WHAT === Int # True
 *Note*. `===` here serves as a strict type equivalence operator. Also, in this
 example we see that `WHAT` returns the type of its invocant.
 
-And yes, it is an object. The only "gotcha" is what kind of object it is and
-what it instantiates. As I've shown above, `WHAT` actually tells us nothing
-useful here. It is another method we need: 
+However, a type object is more than that! This "more" is revealed with another
+introspection method:
 
 ```
 say Int.HOW.^name; # Perl6::Metamodel::ClassHOW
 ```
 
 Don't pay attention to `.^name` here, just keep in mind that it gives us the
-full class name in a string. What is important for us now is _what_ name we've
-gotten.  Because it is time for
+full class name in a string. Let's pay attention to _what_ name we've gotten
+from  method `HOW`. Because it is time for
 
 # Raku Metamodel
 
 At this point it would be really handy if the respected reader knows about Moose
 and MOP. But even if not I'll try to make things easy to catch with.
 
-So, where is our type object? Ah, here you are, my little `Int`! But _what_ are
-you? An instance of `Perl6::Metamodel::ClassHOW` (or just `Metamodel::ClassHOW`
-for `Perl6::Metamodel` namespace is imported as just `Metamodel` into user
-namespace). But what is _this_ class?
+So, where is our type object? Ah, here you are, my little `Int`! And what are
+you hiding under your `HOW` method?
 
-The basics tells us that an object is an instance of a class. The class defines
-object behavior whatever it means; and _yes_ I know other object systems exist,
-but we're now talking about _this_ one! And in it `Int`, as any other Raku
-class, is an instance of `Metamodel::ClassHOW` meaning that `ClassHOW` actually
-defines how a class type object behaves in Raku!
+```
+say Int.HOW.WHICH; # Perl6::Metamodel::ClassHOW|140267043542544
+```
 
-_Note:_ classes implementing other type objects are called _meta-classes_. An
-instance of a meta-class we call _meta-object_. Actually, our `Int` type object
-from the point of view of being an instance of `Perl6::Metamodel::ClassHOW` is a
-meta-object. So, by using either of the terms I define the context in which the
-object is beign considered.
+Since there is no symbol `U` following the pipe `|` after the class name it is
+an instance of `Perl6::Metamodel::ClassHOW`. This instance is called
+_meta-object_. `Perl6::Metamodel::ClassHOW` is a _meta-class_. Each type
+object in Raku is paired with (or, in other words: it is backed by) its own
+meta-object. It is the meta-class which knows how to build a type object. It is
+the meta-object which actually does the job.
 
-**IMPORTANT!** In the last paragraph I have commited a big factual error. A type
-object is not the same with its meta-object! I'll get this corrected ASAP. My
-apologies for the confusion.
+_Note:_ `Perl6::Metamodel` namespace is imported as just `Metamodel` into
+user-level code. Thus, `Metamodel::ClassHOW` is an alias to
+`Perl6::Metamodel::ClassHOW` and will be used throughout this series
+extensively. Sometimes, when context allows, it might be shortened to just
+`ClassHOW`.
 
-Really, this might be confusing at first. Darn it, it is confusing! We must
-start thinking of it in terms that `Int` defines what an integer number is
-capable of; `Str` defines how strings behave; whereas `ClassHOW` defines how
-both type objects `Int` and `Str` act and what makes them objects of the same
-kind.
+Why the complexity? Lets look at things retrospectively.
+
+In the beginning there was a CPU. And the CPU knew about integers. And what
+could be done to them was limited.
+
+Then there was high level languages like C++ where integers were not really much
+different from what was provided by CPU. But there was classes and ways to
+implemented other representations for numeric data types. The compiler knew how
+to handle classes, enums, and other data type constructs. And what could be done
+to them was limited.
+
+And now there is Raku where compiler knows what meta-class to instantiate in
+order to create a new class, enum, etc. And what could be done to them is almost
+limitless now!
 
 Ok, I feel that things haven't become much clearer by now. Let's be practical an
 do something material. What makes an `Int` – `Int`? Things like:
@@ -159,14 +166,14 @@ say 42/0;
 ```
 
 Outcomes of these and many other actions we perform on integer objects are
-defined by class `Int` (an approximation, but ok for now). Meanwhile, what
-happens when we:
+defined by class `Int` (an approximation, but OK for now). Meanwhile, what
+happens when we do:
 
 ```
 Int.new(42)
 ```
 
-is defined by `Metamodel::ClassHOW`. Let's take our usual specimen for
+is mostly defined by `Metamodel::ClassHOW`. Let's take our usual specimen for
 experimenting, class `Foo`:
 
 ```
@@ -176,26 +183,31 @@ class Foo {
 }
 ```
 
-A `Foo` instance behavior is defined by the attribute `$.foo` and the method
+A `Foo` instance behavior is determined by the attribute `$.foo` and the method
 `bar`. Yet _how_ the attribute and the method are added to the class; _how_ the
 `is default` statement is implemented – these things are happening behind the
 scenes and are responsibility of `Metamodel::ClassHOW`. This is one of the key
-distinctions of Raku from many languages where all these aspects are
-responsibility of compiler/interpreter and is usually hardcoded into them.
+distinctions of Raku from many other languages where all these aspects are
+responsibility of compiler/interpreter and are usually hardcoded into them.
 
 The evident question would be: then where is Raku compiler in all this if the
-job is done by a meta-class? It is sitting in between of your syntax constructs
-and the metamodel. The compiler supplies an instance of a meta-class with data
-necessary to build a type object. Here is how it all happens, step-by-step:
+job is done by a meta-class code? It is sitting in between of your syntax
+constructs and the metamodel. The compiler instantiates a meta-class when
+necessary and supplies the resulting meta-object with data needed to build a
+type object. Here is how it all happens, step-by-step:
 
 1. Compiler meets the `class` keyword and determines that classes are now
    handled by `Perl6::Metamodel::ClassHOW`. (NB: this _"now"_ must be
    intriguing!)
-1. An instance of the meta-class is created. This is our type object. The class
-   it repesents can do nothing really useful yet.
+1. A new type object is created with the help of the meta-class. This step can
+   be split into:
+
+   * a meta-object is instantiated from the meta-class
+   * a new type object is created and paired with the meta-object
+
 1. Compiler gives the type object name _Foo_. Actions like this and the
    following ones are normally done by invoking methods provided by
-   `Metamodel::ClassHOW` on our newly created type object.
+   `Metamodel::ClassHOW` on our newly created meta-object.
 1. The type object is set to have the default parent, class `Any`.
 1. When attribute declaration is found an instance of `Attribute` class is
    created and added to the type object. (Yes and yes, attributes are objects
@@ -209,16 +221,16 @@ necessary to build a type object. Here is how it all happens, step-by-step:
 1. The class is now ready for use!
 
 As you can see, despite the process not been of the simplest ones there is no
-black magic in it. Just classes building other classes as robots building
-other robots.
+black magic in it. Just classes building other classes as would robots assemble
+other robots from component parts.
 
-Who is building the builders? That's easy – their-meta builders!
+Then who is building the builders? That's easy – their meta-builders!
 
 ```
 say Int.HOW.HOW.^name; # NQPClassHOW
 ```
 
-So, we asked `Metamodel::ClassHOW` who is its metaclass and were told that it is
+We asked `Metamodel::ClassHOW` who is its meta-class and were told that it is
 `NQPClassHOW`.
 
 ```
@@ -231,15 +243,15 @@ say Int.HOW.HOW.HOW.^name; # KnowHOW
 say Int.HOW.HOW.HOW.HOW.^name; # KnowHOW
 ```
 
-And `KnowHOW` defines... itself? Yes, it does. Because this type object is
-provided by the lowest level of any Raku code – by the virtual machine our code
-was compiled into. At this point we're getting into the area of implementation
-details of the particular compiler. I'll dedicate a small section to Rakudo
-implementation next. For now the thing to remember is that `KnowHOW` is defined
-as being the entity through which any other type object in Raku is defined
-directly or indirectly, including the `KnowHOW` itself.
+And `KnowHOW` defines... itself? Yes, it does. Because this entity is provided
+by the lowest level of any Raku code – by the virtual machine executing it. At
+this point we're getting into the area of implementation details of the
+particular compiler. The next section of the article deals with Rakudo
+implementation. For now the thing to remember is that `KnowHOW` is defined as
+being the entity through which any other type object in Raku is defined directly
+or indirectly, including the `KnowHOW` itself.
 
-`Metamodel::ClassHOW` apparently, is not the only meta-class in Raku. For
+`Metamodel::ClassHOW`, apparently, is not the only meta-class in Raku. For
 example:
 
 ```
@@ -251,17 +263,90 @@ Overall, Rakudo has 15 files in its _src/Perl6/Metamodel_ directory with _HOW_
 in their names.
 
 To sum up, the set of meta-classes together with API they provide is called
-_metamodel_. The we Raku communicates with its metamodel is called _Meta Object
+_metamodel_. The way Raku communicates with its metamodel is called _Meta Object
 Protocol_ or _MOP_. One is getting served by MOP whenever `.HOW` method or `.^`
 form of a method invocation is used.
 
 Even the compiler itself is using MOP for different purposes. For example, it
-can test for type constraint at compile time by invocing a method on a
+can test for type constraint at compile time by invoking a method on a
 meta-object. Or find a method object on a class. But this subject worth a
 dedicated article.
 
 We could say that Raku type system is a layer implemented above Raku Metamodel
-using MOP. And talking about layers, this brings us up to the subject of
+using MOP. 
+
+## Surprise Me!
+
+I love this quote from
+[Ratatouille](https://www.imdb.com/title/tt0382932/?ref_=nv_sr_srsg_0)! Because
+what's the point of a good something unless it brings joy and perhaps some fun?
+
+I've mentioned one direct and evident use for MOP and it's introspection. But
+the metamodel is way more than only this! Remember I wrote above limitless
+possibilities? My first steps with Raku was writing
+[`AttrX::Mooish`](https://github.com/vrurg/raku-AttrX-Mooish) module which
+implements such attribute properties as:
+
+- laziness
+- value filtering
+- value change triggers
+
+And all of it is totally transparent for user code! For example:
+
+```
+class Foo {
+    has $!foo; # A private attribute
+    method bar { say $!foo }
+}
+Foo.new.bar; # (Any)
+```
+
+But with:
+
+```
+use AttrX::Mooish;
+class Foo {
+    has $!foo is mooish(:lazy); # A private attribute
+    method !build-foo { 42 }
+    method bar { say $!foo }
+}
+Foo.new.bar; # 42
+```
+
+Sure, the module is heavily utilizing MOP to achieve its goals.
+
+Another great example is [`OO::Monitors`](https://github.com/jnthn/oo-monitors).
+If you ever wrote any multi-threaded code then the importance of proper locking
+should be obvious. Imagine a big data structure implemented as a class and prone
+to concurrency errors. The class has dozens of methods and most if not every of
+them must be protected with locking like this (in pseudo-code):
+
+```
+method modify_xyz(...) {
+    $.global-lock.lock;
+    ... # The implementation
+    $.global-lock.unlock;
+}
+```
+
+Boring, boring boilerplates... Instead one can import the module and use keyword
+`monitor` instead of `class`:
+
+```
+use OO::Monitors;
+monitor Foo {
+    method modify_xyz(...) {
+        ... # The implementation
+    }
+}
+```
+
+Job done, no more than one thread would have access to a class instance at a
+time! Use it in a concurrent environment and be worried no more.
+
+One more exam... Er... No, no! It's better to stop now. Or this article alone
+would become a size of a good book! But I plan to write about compiler
+interaction with user code, where a lot of magic is possible, some day.
 
 # Rakudo, NQP, Runtime VM, And Implementation Stack
 
@@ -284,7 +369,7 @@ from bottom up:
    multi-threading.
 1. NQP compiler built atop of a backend. NQP is a simplified subset of Raku. Its
    name stands for _Not Quite Perl_ and was born long ago when Raku was Perl6
-   yet. NQP has a couple of key properties:
+   still. NQP has a couple of key properties:
 
    - being a simpler subset of Raku it works much faster
    - it can compile itself
@@ -316,7 +401,7 @@ incorporating code from other languages by other means._
 
 # Before We Finish
 
-Let me repeat myself: this series is only an introduction to Raku. It's purpose
+Let me repeat myself: this series is only an introduction to Raku. Its purpose
 is to give good starting points and hopefully make you interested in Raku a
 little more than you were before started reading this publication. But in
 neither way it is comprehensive enough! Moreover, it only scratches the surface
@@ -327,7 +412,7 @@ helpful!
 
 In either case, don't worry if something is unclear at the moment! Raku is in
 fact a big and complex language (though surprisingly simple to start with!
-espcially with a good book at hand). Even some experienced developers working
+Especially with a good book at hand). Even some experienced developers working
 with it for years sometimes get surprised with it! But isn't it great to have a
 chance of learning something new in what may seem to be so familiar?
 
