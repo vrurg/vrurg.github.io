@@ -19,12 +19,13 @@ liquid:
 # in the templates via {{ site.myvariable }}.
 title: LFlat, The Home of Vrurg
 subtitle: Raku and anything related
+repository: vrurg/vrurg.github.io.git
 name: Vadim Belman
 email: vrurg@cpan.org
 #description: >- # this means to ignore newlines until "baseurl:"
 #    Still experimenting with all this.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://vrurg.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: vrurg
 github_username:  vrurg
 facebook_username: vrurg
