@@ -196,10 +196,11 @@ example:
 my $a = [1, 2];
 say $a.WHAT;      # (Array)
 say $a.VAR.WHAT;  # (Scalar)
-say $a;           # $[1, 2]
+say $a.raku;      # $[1, 2]
 ```
 
-Mind the `$` sign before the opening square bracket in the last line. It signals
+Mind the `$` sign before the opening square bracket in the last line (see
+[`raku` method documentation](https://docs.raku.org/routine/raku)). It signals
 that the array is containerized in a scalar. This is important to know because
 depending on context Raku might handle the array differently. A situation when
 this happens often comes as a surprise even to not so beginners:
@@ -212,11 +213,10 @@ say @a.elems; # 1
 ```
 
 Oops, we found a bug?! Of course not. Because when the assignment to `@a`  finds
-a scalar on the right hand side it considers it as a single value. Printing `@a`
-would result in:
+a scalar on the right hand side it considers it as a single value:
 
 ```
-[$[1, 2],]
+say @a.raku; # [[1, 2],]
 ```
 
 When array-to-array assignment is required it could be achieved in several ways
@@ -227,7 +227,14 @@ When array-to-array assignment is required it could be achieved in several ways
 ```
 
 `<>` takes the value out of the scalar containing it and returns as the
-statement result. 
+statement result making the line above similar to:
+
+```
+my @a;
+my @b = [1, 2];
+@a = @b;
+say @a.raku; # [1, 2] 
+```
 
 Other ways are not related to our subject here and I’m willing not to focus on
 them.
