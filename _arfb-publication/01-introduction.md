@@ -9,7 +9,7 @@ I'm starting a series of articles devoted to Raku for beginners. But...
 <!--more-->
 
 ... this series is not about Raku basics. Instead here one can find information
-about how Raku works from inside-out. I plan to talk about things which are
+about how Raku works from inside-out. I plan to write about things which are
 often either not on the surface, or not well-documented yet, or totally hidden
 behind the scenes for any other reason.
 
@@ -36,12 +36,14 @@ If you have trouble understanding the above example then my reccomendation would
 be to visit [Amazon](https://www.amazon.com/s?k=perl6+book) or any other online
 or offline book store first and start with one of the great books about Perl6.
 And if the language history is also _terra incognita_ for you, don't get
-confused here. The language once started as Perl6 but was renamed to Raku in
-October 2019.
+confused here. It once started as Perl6 but was renamed into Raku in October
+2019.
 
 For those who feel the bravery to dive deep into the language internals, I
-promise to do my best in starting with simpler concepts. Each next article would
-be getting to more complicated concepts as gradual as possible.
+promise to do my best in starting with simpler concepts. Sometimes it'd also
+mean that not really relevant details could be omitted for ease of reading. Then
+each next article would be getting to more complicated concepts as gradual as
+possible.
 
 As a matter of fact, the series just've started by telling about Perl6 and Raku
 and how they're the same. It is now time to tell about Rakudo. 
