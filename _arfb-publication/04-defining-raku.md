@@ -180,7 +180,7 @@ Another one lets us introspect the outer of our outer with `OUTER::OUTER`
 notation. Correspondigly `OUTER::OUTER::` would return the
 symbol table of the scope two steps away from the current one!
 
-We're know ready for a discovery! Let's find out what's the above mentioned
+We're now ready for a discovery! Let's find out what's the above mentioned
 "oops" is all about. For this we start with  a one-liner: `use v6.d; say
 OUTER::OUTER::.keys`. It can be tried directly from your shell command line:
 
@@ -234,7 +234,7 @@ The following pseudo-code schematically demoes what's said above:
 ```
 
 It is now time to introduce one more term extensively used in Raku: _compunit_
-which is short of _computational unit_. In the pseudo-code above compunit is the
+which is short of _compilation unit_. In the pseudo-code above compunit is the
 _User code_ section. Similarly, the following being put in a `.rakumod` module
 file would be considered a compunit too:
 
