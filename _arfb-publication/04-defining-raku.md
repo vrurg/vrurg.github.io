@@ -42,8 +42,8 @@ In Raku we use another way. We have
 
 # Roast
 
-It is a [test suite](https://github.com/Raku/roast). And it defines what Raku
-language is. Any compiler passing tests in Roast is considered to be
+It is a [test suite](https://github.com/Raku/roast). And it defines what the
+Raku language is. Any compiler passing tests in Roast is considered to be
 implementing Raku or a subset of it if failing some tests.
 
 Let me be a bit emotional here, but I consider the idea to be a fantastic one!
@@ -53,15 +53,15 @@ language took this path.
 
 The advantages of using a test suite as the language specification lies in part
 in the ease of maintaining it. Instead of codifying a standard in a textual
-form, and letting a compiler developers to deal with it, and discussing what
+form, and letting compiler developers to deal with it, and discussing what
 interpretation of the spec is correct, we simply add a test and say: if a
 compiler passes it then it implements the particular spec.
 
 _And it is never too much to remind that I simplify things here by skipping some
 irrelevant details which may obscure the main point._
 
-Of course, use of Roast is not only about joy. The two problems I can think of
-right away are:
+Of course, the use of Roast is not only about joy. The two problems I can think
+of right away are:
 
 - the structure of the test suite
 - ease of finding necessary information
@@ -101,14 +101,14 @@ Luckily, alongside with Roast, Raku has brilliant and ever evolving
 one’s needs in looking for information about Raku syntax and core API.
 
 Speaking of myself, when it comes to choosing between unambiguity of the
-specification and its searchability – the first wins univocally!
+specification and its searchability – the first wins, univocally!
 
 # The Core
 
 In a previous article I mentioned that the compiler in Raku is responsible for
-syntax. By then I was talking about OO and Metamodel. But the statement could
-pretty much be extended to everything in the language _(still, remember about
-simplifications!)_. Yet, syntax alone makes like... er... well... not the
+syntax. By then I was talking about OO and the Metamodel. But the statement
+could pretty much be extended to everything in the language _(still, remember
+about simplifications!)_. Yet, syntax alone makes like... er... well... not the
 biggest part of Raku specs. By browsing Roast one would quickly realize that
 most of it is about testing core classes and their interfaces. Sometimes what
 looks like a syntax test implies testing of a core class at the same time! For
@@ -247,20 +247,21 @@ For our purpose it is sufficient to state that any file of Raku code is a
 compunit, would it be a script or a module.
 
 _Note:_ In the previous section I used pairs of `OUTER::` to reach the setting
-symbol teable. This is because Rakudo installs an additional empty lexical scope
-between a compunit and its setting. The purpose of the scope is technical and
+symbol table. This is because Rakudo installs an additional empty lexical scope
+between a compunit and its setting. The purpose of this scope is technical and
 not relevant to our subject. The pseudo-code example above doesn't reflect this
 fact.
 
-It would also worth noting that a setting is not necessarily about what compiler
-installs for you by default. For example, theoretically Rakudo allows use of a
-custom made setting (which could be pre-compiled by the user). For example,
-Rakudo distribution contains _RESTRICTED_ setting which is installed under
+It would also be worth noting that a setting is not necessarily about what
+compiler installs for you by default. For example, theoretically Rakudo allows
+use of a custom made setting (which could be pre-compiled by the user). For
+example, the Rakudo distribution contains _RESTRICTED_ setting which is
+installed under
 `<your_Rakudo_path>/share/perl6/runtime/RESTRICTED.setting.<backend_extension>`.
 It's source is very simple and easy to grok and can be found in
 `src/RESTRICTED.setting` under Rakudo sources root. The purpose of it is to
 restrict certain unsafe features like socket and file handles, filesystem
-manipulations, external processes.
+manipulations, and external processes.
 
 Unfortunately, while writing this section I realized that the support of custom
 setting is currently broken in Rakudo. Though I have a guess as to how to get it
@@ -270,10 +271,10 @@ Anyway, I have one more subject on my hands to cover:
 
 # Language Version
 
-As it is mentioned in
+As mentioned in
 [Introduction](https://vrurg.github.io/arfb-publication/01-introduction/),
-Rakudo is not the Raku. It is as bothersome on this as I am myself. Every time
-when asked for the version it tells you that:
+Rakudo is not Raku. The compiler is as bothersome on this as I am myself. Every
+time when asked for the version it tells you the following:
 
 ```
 This is Rakudo version 2020.06 built on MoarVM version 2020.06
@@ -281,9 +282,9 @@ implementing Raku 6.d.
 ```
 
 This section I devote not to `2020.06` in the first line of output but to `6.d`
-in the second line. To much of a surprise to many, it's only the second version
-of Raku as the first one is actually `6.c` and it is the version Perl6 got when
-was proclaimed released in 2015.
+in the second line. To the surprise of many, it's only the second version of
+Raku as the first one was `6.c` given to Perl6 when released on Christmas of
+2015.
 
 From the very beginning Raku was designed with backward compatibility in mind.
 First it was about maintaining Perl6 compatibility with Perl5. Then it gradually
@@ -291,10 +292,11 @@ evolved into ways of being backward compatible to older Raku code while allowing
 breaking changes on major version transitions.
 
 Generally speaking, the problem of being backcompat to previous versions doesn't
-have an ideal solution. One way or another, it is often a matter of choosing
-plain bad tradeoffs out of a set horrible ones. But when chosen, the rules are
-to be spoken out load, clear, and be followed with no exceptions. This is where
-Raku does do the right thing. The rules I currently want to focus upon are:
+have an ideal solution. One way or another, it is often a matter of chosing
+between a bad tradeoff and a set of horrible ones. But when chosen, the rules
+are to be spoken out load, clear, and be followed with no exceptions. This is
+where Raku does do the right thing. The rules I currently want to focus upon
+are:
 
 1. A compunit must be able to proclaim the language version it is willing to be
    compiled with.
@@ -309,14 +311,15 @@ use v6.d;
 ```
 
 This explicitly tells the compiler that the compunit following the pragma is
-expected to be ran against Rakudo version `6.d`. More practical example
+expected to be run against Rakudo version `6.d`. Here's a more practical
+example:
 
 ```
 use v6.c;
 unit module Only6c;
 ``` 
 
-have the meaning of module `Only6c` to unlikely be compatible with any other
+This means that the module `Only6c` is unlikely be compatible with any other
 Raku version. But this doesn't pose a risk of being incompatible with a script
 running under `6.d` due to the second rule: the script's compunit will have its
 `6.d` while the module it imports will have its `6.c`:
@@ -329,8 +332,8 @@ Only6c::foo(42); # No problem!
 
 The only problem possible with this approach is when a Raku version is
 considered too old and voted to be dropped out of compiler's support. But this
-kind of situation is not expected to happen in any near future. And even then
-the solution will depend on factors we don't know yet about.
+kind of situation is not expected to happen in the near future. And even then
+the solution will depend on factors we don't yet know about.
 
 # The Core Settings
 
