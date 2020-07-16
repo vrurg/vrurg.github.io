@@ -39,6 +39,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
+  - jekyll-mentions
   - jemoji
   - jekyll-include-cache
 

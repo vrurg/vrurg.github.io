@@ -1,19 +1,29 @@
 ---
 layout: single-lflat
 title: "Advanced Raku For Beginners"
-#header:
-#  teaser: "/assets/images/Camelia-200px-SQUARE.png"
 description: >-
     A series of articles about Raku's not so evident features
     and quirks.
 ---
-Articles in the series are not finalized and could be subject for further
-changes. I gladly accept any related
+# Preface
+
+I would like to thank effusively the people who helped me make these articles
+better:
+
+- Elizabeth Mattijsen, @lizmat
+- Jürgen Botz @jebotz
+- @xliff
+
+The publications here are not finalized and could still be the subject for
+further changes. I gladly accept any related
 [reports](https://github.com/vrurg/vrurg.github.io/issues/new/choose) or
 [corrections](https://github.com/vrurg/vrurg.github.io/compare).
 
 Thank you and have a great time reading!
 
+# List Of Articles
+
 {% for post in site.arfb-publication %}
 {% include archive-single.html %}
+<hr>
 {% endfor %}
