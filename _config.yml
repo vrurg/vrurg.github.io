@@ -145,6 +145,7 @@ defaults:
       related: true
       author_profile: true
       toc_icon: book
+      toc_sticky: true
       excerpt_separator: <!--more-->
       permalink: /:year/:month/:day/:title
       comments: true
