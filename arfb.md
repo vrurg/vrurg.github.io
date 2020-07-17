@@ -11,7 +11,7 @@ I would like to thank effusively the people who helped me make these articles
 better:
 
 - Elizabeth Mattijsen, @lizmat
-- Jürgen Botz @jebotz
+- Jürgen Botz, @jebotz
 - @xliff
 
 The publications here are not finalized and could still be the subject for
