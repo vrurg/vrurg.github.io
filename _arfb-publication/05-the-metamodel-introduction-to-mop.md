@@ -176,10 +176,10 @@ seeking for extra knowledge required here and now.
 # Specifics of `.^`
 
 Anyway, I'm now getting back on the main highway. The real reason for
-introducing the meta-method here is to introspect it's parameters to demostrate
+introducing the meta-method here is to introspect it's parameters to demonstrate
 the meta-object protocol in action. In turn it must clarify a nuance which I
 often saw people to be confused with. The cause of it is the transition from the
-world of user-land Raku into the world of Raku metamodel. Me myself once or twice
+world of user-land Raku into the world of Raku metamodel. once or twice I myself
 made a mistake by explaining `$obj.^foo`  as `$obj.HOW.foo($obj.HOW)`! I didn't
 tell, you never saw this...
 
@@ -243,7 +243,7 @@ say Int.HOW.HOW.^name;
 ```
 
 The operator doesn't rely on any high-level infrastructure and provides us with
-direct access to any meta-method at any level. Due to MOP is standartized across
+direct access to any meta-method at any level. Due to MOP is standardized across
 all layers of the metamemodel, `name` method will always have the first `$obj`
 parameter and thus will always be accessible via `.^`.
 
