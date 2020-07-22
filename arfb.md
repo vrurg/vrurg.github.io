@@ -10,9 +10,9 @@ description: >-
 I would like to thank effusively the people who helped me make these articles
 better:
 
-- Elizabeth Mattijsen, @lizmat
 - Jürgen Botz, @jebotz
-- @xliff
+- Elizabeth Mattijsen, @lizmat
+- Clifton Wood, @xliff
 
 The publications here are not finalized and could still be the subject for
 further changes. I gladly accept any related
