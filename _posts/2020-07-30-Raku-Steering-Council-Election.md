@@ -27,3 +27,11 @@ The biggest advantages of the Council as I see them are:
   
 _Disclaimer:_ everything stated above is my personal view of the situation which
 is to be sumed up as: the damn good thing is happening!
+
+**To the point!** The Council is not an elite closed club. Anybody can nominate
+himself! Just read [the election
+announce](https://github.com/Raku/Raku-Steering-Council/blob/main/announcements/20200720.md).
+
+BTW, the announce currently states the Aug 2 is the last date to nominate. This
+is about to change to Sep 6. Still, don't procrastinate too much, let the
+community know about your nomination and yourself!
