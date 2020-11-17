@@ -1,5 +1,5 @@
 ---
-title: Report On New Coercions
+title: The Report On New Coercions
 tags: Raku MOP core
 toc: true
 header:
