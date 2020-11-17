@@ -15,7 +15,7 @@ Jonathan's comment stating:
 
 > there's no reason this can't be made to work at some point in the future. It's just not entirely trivial to get there.
 
-Ok, I said to myself, he is a busy men for whom time is even pricier luxury than it is to me. I can probably do it in a
+Ok, I said to myself, he is a busy man for whom time is even pricier luxury than it is to me. I can probably do it in a
 week or two!
 
 It's always easy to guess what comes next: I was a way too naïve one; but this is for the better, as it turns out.
@@ -128,7 +128,7 @@ modules!
 
 Skipping all the discussions and intermediate variants, here is what I came up with eventually.
 
-First of all, the coercion protocol is implemented by `Metamodel::CoercionHOW::coercion()` method. It means that the
+First of all, the coercion protocol is implemented by `Metamodel::CoercionHOW::coerce()` method. It means that the
 protocol is now publicly available. `say Str(Rat).^coerce(3.14).raku` will now give you a string.
 
 The protocol itself consist of the following steps:
@@ -218,7 +218,7 @@ anyone but core developers.
 ### Submethods
 
 Coercion protocol doesn't imply a limitation on use of either methods or submethods for its implementation. But
-depending on which one is used it's behavior may have different outcomes. Consider this example:
+depending on which one is used its behavior may have different outcomes. Consider this example:
 
 ```
 class C1 {
@@ -246,7 +246,7 @@ c3(3); # C1::COERCE
 
 The difference is apparent for anybody with clear understanding of submethods. For anyone alse my advise would be to
 stick with [multi-]methods. Yet, note the use of `C2.new` in the submethod. It is safe to be done that way for the exact
-reason of the submethod not ever be called for any other target but `C2`. Anyway, I would insist on using `self` even
+reason of the submethod not ever being called for any other target but `C2`. Anyway, I would insist on using `self` even
 within a submethod because, if at some point you decide to convert it into a method, this simple approach may spare you
 minutes or even who knows how many hours of locating the error.
 
