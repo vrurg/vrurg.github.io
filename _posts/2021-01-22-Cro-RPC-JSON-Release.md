@@ -37,7 +37,7 @@ That's all. The only limitation the module currently imposing on the methods is
 accepting simple arguments and returning JSONifiable values, as supported by
 [`JSON::Fast`](https://modules.raku.org/dist/JSON::Fast:cpan:TIMOTIMO).
 Marshalling/unmarshalling of parameters/return values is considered, but I'm not
-ceratain yet as to how exactly to implement it.
+certain yet as to how exactly to implement it.
 
 Now, all we need to serve JSON-RPC calls is to add this kind of entry into 
 [`Cro`](https://cro.services) routes:
@@ -69,13 +69,13 @@ natural fit, who am I to disobey the command?
 
 The support comes in a form of implementing both JSON-RPC and asynchronous
 notifications support by treating socket as a bi-directional stream of JSON
-objects. JSON-RPC ones are recognized by either presense of `jsonrpc` key in an
+objects. JSON-RPC ones are recognized by either presence of `jsonrpc` key in an
 object; or by treating a JSON array as a JSON-RPC batch. Because the RPC traffic
 is prioritized over free-form notifications it means that the latter can only be
 represented by JSON objects (and without `jsonrpc` key in them!). No other
-limiations implied. I don't consider the constraint as a problem because the
+limitations implied. I don't consider the constraint as a problem because the
 primary purpose of non-RPC objects is to support push notifications. For any
-other kind of traffic it is alawys possible to open a new RPC-free socket.
+other kind of traffic it is always possible to open a new RPC-free socket.
 
 The use of our actor/API class with WebSockets is as simple as:
 
@@ -148,7 +148,7 @@ _A note to myself: don't you want to document all this?_
 
 ## Error Handling
 
-This was perhaps the biggest nightmare. As it is always with asychronous code.
+This was perhaps the biggest nightmare. As it is always with asynchronous code.
 But, hopefully, I finally got it done right. For synchronous code and class
 method calls the module should now do all is needed to properly handle any
 exception leaked from the user code. For JSON-RPC method calls this would mean
