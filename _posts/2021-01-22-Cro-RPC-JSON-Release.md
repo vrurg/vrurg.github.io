@@ -6,8 +6,8 @@ header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---
 
-**UPDATE** I had to pull out versions 0.1.0 and 0.1.1 from CPAN. See [the
-followup post](/2021/01/28/Cro-RPC-JSON-Re-Release).
+**UPDATE** _I had to pull out versions 0.1.0 and 0.1.1 from CPAN. See [the
+followup post](/2021/01/28/Cro-RPC-JSON-Re-Release)._
 
 I don't usually announce regular releases of my modules. But not this time. I
 start this new year with the new _v0.1_ branch of
