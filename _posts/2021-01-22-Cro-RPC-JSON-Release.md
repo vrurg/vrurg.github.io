@@ -29,7 +29,7 @@ example, if we have a class for accessing an inventory database of some kind
 then it should be easy to use the same class to serve our front-end JavaScript
 code:
 
-```
+```raku
 class Inventory {
     ...
     method find-item(Str:D $name) is json-rpc { ... }
@@ -46,7 +46,7 @@ certain yet as to how exactly to implement it.
 Now, all we need to serve JSON-RPC calls is to add this kind of entry into 
 [`Cro`](https://cro.services) routes:
 
-```
+```raku
 # If Inventory is not thread-safe this this line has to be placed inside the
 # 'post' block.
 my $inventory-actor = Inventory.new;
@@ -83,7 +83,7 @@ other kind of traffic it is always possible to open a new RPC-free socket.
 
 The use of our actor/API class with WebSockets is as simple as:
 
-```
+```raku
 route {
     ...
     get -> 'api' {
@@ -120,7 +120,7 @@ provides three different modes of operation: synchronous, asynchronous, and
 hybrid. Again, I'd better avoid citing the documentation here. Just single
 example for our `Inventory` class:
 
-```
+```raku
 method subsribe(Str:D $notification) is json-rpc("rpc.on") { ... }
 method unsubscribe(Str:D $notification) is json-rpc("rpc.off") { ... }
 method on-inventory-update is json-rpc(:async) {
