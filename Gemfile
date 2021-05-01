@@ -22,8 +22,10 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
   gem "jekyll-include-cache"
   gem 'jekyll-mentions'
-  gem "kramdown", ">= 2.3.0"
-  gem "nokogiri", ">= 1.11.0.rc4"
+  gem "kramdown"
+  gem "nokogiri"
+  #gem "kramdown", ">= 2.3.1"
+  #gem "nokogiri", ">= 1.11.0.rc4"
   # gem "jekyll-archives"
 end
 
