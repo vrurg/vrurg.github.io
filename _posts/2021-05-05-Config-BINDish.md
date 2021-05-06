@@ -2,6 +2,7 @@
 title: Config::BINDish Module First Release
 tags: Raku module config
 toc: true
+date: 2021-05-05 23:00:00
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---
