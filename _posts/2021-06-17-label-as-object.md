@@ -1,12 +1,13 @@
 ---
 title: Did you know that ...
 tags: Raku fact
-toc: true
+toc: false
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---
 Raku is full of surprises. Sometimes I read something what that me like "oh,
-really?". Sometimes I realize than a fact evident for me is not so for others.
+really?". Sometimes I realize than a fact evident for me is not so obvious for
+others.
 <!--more-->
 
 Here is one of the kind.
