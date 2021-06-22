@@ -468,44 +468,90 @@ When the compiler builds a role group it also creates a multi-dispatch routine.
 Internally it is called _selector_. Of the every newly added parametric role its
 body block (which is actually a `multi sub`) is taken and added to the selector
 as a multi-dispatch candidate.  Now, when one writes something like `R[Int,
-Str]` in their code the compiler does a process similar to choosing a
-multi-dispatch routine candidate. Based on the body block candidate, provided by
-the process, it picks the role to which the block belongs.
+Str]` in their code the compiler uses multi-dispatch to pick a routine
+candidate. Based on the result, it finds the role to which the matching
+candidate block belongs.
 
 So, it must now make much more sense when we mention a role signature. Because
-it is a signature, as a matter of fact. If I to re-word a role declaration `role
+it **is** a signature, as a matter of fact. If I to re-word a role declaration `role
 R[::T, ::V] {}` in somewhat more human-programmer-readable way, it might look
 like:
 
 > Declare a candidate role `R` with body block `sub (::T, ::V) {...}`  
 
-Good, we're done with this matter now. But isn't something bothering you, my
-attentive reader? Isn't the word "similar" above implies some kind of... er...
-surprise? Well, unfortunately, the candidate choosing doesn't follow the full
-multi-dispatch protocol as it lacks support for named arguments. This is due to
-limits in low-level implementation of type parameterization. It means that the
-following two declarations are considered the same:
+### A Bit Of Cold Shower
+
+So far, so good. But there is a catch: named parameters. 
+
+**NOTE** that this section describes the implementation of Rakudo compiler
+2021.06 release. The situation might change with a future compiler release.
+
+Consider a declaration:
 
 ```
-role R[Int, Bool :$foo] {...}
-role R[Int, Str:D :$bar] {...}
+role R[Int ::T] { method foo { say "none, Int" } }
+role R[Int ::T, Str:D :$desc] { method foo { say "desc:", $desc } }
+
+class C1 does R[Int, desc => "sss"] { }
+class C2 does R[Int, desc => "sss"] { }
+class C3 does R[Int] { }
+class C4 does R[Int] { }
 ```
 
+First thing to try is to see if roles are chosen correctly:
+
+```
+C1.foo; # desc:sss
+C3.foo; # none, Int
+```
+
+Looks like it. But this is where the good news ends:
+
+```
+say C1.^roles[0] =:= C2.^roles[0]; # False 
+say C3.^roles[0] =:= C4.^roles[0]; # True
+```
+
+What the above output means is that as soon as one uses a named parameter the
+compiler will be creating a new currying for each new parameterization, despite
+of the named argument value passed in. Note how positional-only role candidate
+is not affected by the issue.
+
+Whereas the above problem might not be a big deal most of the time, the
+following example demonstrates another one, which is more substantial:
+
+```
+say R[Int] ~~ R[Int, :desc<sss>]; # True
+say R[Int, :desc<sss>] ~~ R[Int]; # True
+```
+
+Note how positional-only candidate does the right thing:
+
+```
+say R[IntStr] ~~ R[Int]; # True
+say R[Int] ~~ R[IntStr]; # False
+```
+
+With all this in mind I'd rather advice to avoid named parameters in role
+declarations. 
+
+Unfortunately, the problem doesn't have a reasonable solution for now because
+support for named parameters is not provided by MoarVM implementation of type
+parameterization. Was it an oversight, or a deliberate decision - I don't know.
 Hopefully, the situation will change when [the new dispatching
 mechanism](https://6guts.wordpress.com/2021/03/15/towards-a-new-general-dispatch-mechanism-in-moarvm/)
-will arrive to Rakudo, but I'd be giving no promises here.
-
-In the meanwhile, you can still use the nameds, just not rely on them to
-uniquely identify your role candidate.
+will arrive to Rakudo, but I'd be giving no promises here. I only believe, up to
+my knowledge, that the new dispatching provides ways for a solution to be
+implemented.
 
 ### A Black Magic Sèance
 
-This not really related to the candidate choosing, but I can't stand not showing
-you something tricky. Also, in many fiction and fairy tale stories black magic
-is something what lets you achieve a goal but with a price tag attached.
-Sometimes the tag is quite a bloody one, but this is not my case here. And,
-actually, my goal and the price are the same: I want to intrigue you with
-something different.
+This section is not really related to the candidate choosing, but I can't stand
+not showing you something tricky. Also, in many fiction and fairy tale stories
+black magic is something what lets you achieve a goal but with a price tag
+attached.  Sometimes the tag is quite a bloody one, but this is not my case
+here. And, actually, my goal and the price are the same: I want to intrigue you
+with something different.
 
 Here is the spell to cast:
 
