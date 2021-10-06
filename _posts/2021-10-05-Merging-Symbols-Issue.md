@@ -1,7 +1,7 @@
 ---
 title: Merging Symbols Issue
 tags: Raku module thoughts
-#toc: false
+toc: true
 #date: 2021-05-05 23:00:00
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
@@ -52,7 +52,7 @@ objects which are supposed to be the same thing, but they happen to be
 different and have different stashes. Because `MoarVM` doesn't (and must not)
 have any idea about the structure of high-level Raku objects, there is no way it
 could properly handle this situation. Instead it considers one of the
-conflicting stashes as "the winner" and drops the other one. Apparently, simbols
+conflicting stashes as "the winner" and drops the other one. Apparently, symbols
 unique to the "loser" are lost then.
 
 It took me time to find out what exactly happens. But not until a couple
