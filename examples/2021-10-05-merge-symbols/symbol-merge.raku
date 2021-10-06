@@ -1,4 +1,5 @@
 use v6;
+#use L1;
 use L1::App;
 
 my $app = L1::App.new;
