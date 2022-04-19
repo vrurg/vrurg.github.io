@@ -10,7 +10,7 @@ Long time no see, my dear reader! I was planning a lot for this blog, as well as
 for the [Advanced Raku For Beginners](/arfb.html) series. But you know what they
 say: wanna make the God laugh – tell him your plans!
 
-Anyway, there is one tradition I should try to maintain howerver hard the times
+Anyway, there is one tradition I should try to maintain however hard the times
 are: whenever I introduce something new into the Raku language an update has to
 be published. No exception this time.
 
@@ -36,9 +36,9 @@ The `<declaration>` is anything what could result in a type check exception
 thrown. I tried to cover all such cases, but not sure if something hasn't been
 left behind. See the sections below.
 
-`<code>` can be any `Code` object which will receive a singe argument: the value
+`<code>` can be any `Code` object which will receive a single argument: the value
 which didn't pass the type check. The code must return a string to be included
-into exception message. Something stringifyable would also do.
+into exception message. Something stringifiable would also do.
 
 Less words, more examples! 
 
@@ -150,6 +150,7 @@ language. Even more, I was avoiding applying for any grants because it was
 always like "somebody would have better use for them".
 
 But this time I'm asking because any help to Ukrainian militaries means saving
-lives, both their and the people they protect.
+lives, both theirs and the people they protect.
 
-![PayPal Donate](/assets/images/PayPalQR.png)
+[PayPal:<br/>![PayPal Donate](/assets/images/PayPalQR.png)
+](https://paypal.me/vrurg?country.x=US&locale.x=en_US)
