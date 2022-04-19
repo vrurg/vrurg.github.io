@@ -225,7 +225,7 @@ GLOBAL
 
 Rough purpose is for application to deal with some kind of collection which
 stores its items with help of a driver which is loaded dynamically, depending,
-say, on a user configuration. We have only driver implemented: File System
+say, on a user configuration. We have the only driver implemented: File System
 (`FS`).
 
 If you checkout the repository and try `raku -Ilib symbol-merge.raku` in the
