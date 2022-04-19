@@ -5,6 +5,8 @@ main:
       url: "/publications.html"
 
 default:
+    - title: "HELP TO UKRAINE"
+      url: "/donate_to_ukraine.html"
     - title: "PUBLICATIONS"
       url: "/publications.html"
       children:

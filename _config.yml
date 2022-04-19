@@ -67,8 +67,8 @@ tag_archive:
 #    tag: /tags/:name/
 
 
-#logo: "/assets/images/IMG_0775.png"
-#teaser: "/assets/images/IMG_0775.png"
+#logo: "/assets/images/UAFlag.jpg"
+#teaser: "/assets/images/UAFlag.jpg"
 
 paginate: 5
 paginate_path: /page:num/
@@ -133,7 +133,7 @@ defaults:
       sidebar:
         nav: default
       header:
-        overlay_image: "/assets/images/IMG_0775.png"
+        overlay_image: "/assets/images/UAFlag.jpg"
   - scope:
       path: ""
       type: posts
@@ -152,7 +152,7 @@ defaults:
       sidebar:
         nav: default
       header:
-        overlay_image: "/assets/images/IMG_0775.png"
+        overlay_image: "/assets/images/UAFlag.jpg"
         show_overlay_excerpt: false
   - scope:
       path: ""
@@ -169,6 +169,6 @@ defaults:
       sidebar:
         nav: default
       header:
-        overlay_image: /assets/images/IMG_0775.png
+        overlay_image: /assets/images/UAFlag.jpg
         logo: "https://github.com/Raku/marketing/raw/master/LOGOs/Camelia/Primary--1533512212/Camelia-200px-SQUARE.png"
         show_overlay_excerpt: false
