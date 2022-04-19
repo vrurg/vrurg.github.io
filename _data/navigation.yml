@@ -3,6 +3,8 @@ main:
       url: "/"
     - title: "Publications"
       url: "/publications.html"
+    - title: "Help To Ukraine"
+      url: "/donate_to_ukraine.html"
 
 default:
     - title: "HELP TO UKRAINE"

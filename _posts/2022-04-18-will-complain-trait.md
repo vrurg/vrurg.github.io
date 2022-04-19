@@ -131,11 +131,11 @@ sub foo( Str:D $p will complain { "the first argument must be a string with 'foo
                   where *.contains('foo') ) {}
 ```
 
-# Merge
+## Merge
 
 By this time all CI has passed with no errors and I have merged the PR. 
 
-# Ukraine
+## Ukraine
 
 You all are likely to know about the Russia's war in Ukraine. Some of you know
 that Ukraine is my homeland. What I never told is that since the first days of
