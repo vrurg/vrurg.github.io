@@ -12,20 +12,21 @@ My recent tasks are spinning around concurrency in one way or another. And where
 the concurrency is there are locks. Basically, introducing a lock is the most
 popular and the most straightforward solution for most race conditions one could
 encounter in their code. Like, whenever an investigation results in a resolution
-that data is being update in one thread while used in another then just wrap
+that data is being updated in one thread while used in another then just wrap
 both blocks into a lock and be done with it! Right? Are you sure?
 
 They used to say about Perl that "if a problem is solved with regex then you got
 two problems". By changing 'regex' to 'lock' we shift into another domain. I
 wouldn't discuss interlocks here because it's rather a subject for a big CS
 article. But I would mention an issue that is possible to stumble upon in a
-heavily multi-threaded application. Did you know that `Lock`, Raku's most used
-type for locking, actually blocks its thread? Did you also know that threads are
-a limited resource? That the default `ThreadPoolScheduler` has a limit, which
-depends on the number of CPU cores available to your system? Worse, it used to
-be a hard-coded limit of 64 threads a while ago.
+heavily multi-threaded Raku application. Did you know that `Lock`, Raku's most
+used type for locking, actually blocks its thread? Did you also know that
+threads are a limited resource? That the default `ThreadPoolScheduler` has a
+maximum, which depends on the number of CPU cores available to your system? It
+even used to be a hard-coded value of 64 threads a while ago.
 
-Put together, these two conditions could result in the following code to stuck:
+Put together, these two conditions could result in stuck code, like in this
+example:
 
 ```
 BEGIN PROCESS::<$SCHEDULER> = ThreadPoolScheduler.new: max_threads => 32;
@@ -46,12 +47,13 @@ await @p;
 ```
 
 Looks innocent, isn't it? But it would never end because all available threads
-would be blocked by locks and the last one, which is supposed to initiate the
-unlock, would never start. This is not a bug in the language but a side effect
-of its architecture. I created `Async::Workers` module to solve a task I had
-back then to get around this issue. For other tasks I can replace `Lock` with
-`Lock::Async`. Why? The answer is in the following section. Why not always
-`Lock::Async`? Because it is rather slow. How much slower? Read on!
+would be consumed and blocked by locks. Then the last one, which is supposed to
+initiate the unlock, would just never start in first place. This is not a bug in
+the language but a side effect of its architecture. I had to create
+`Async::Workers` module a while ago to solve a task which was hit by this issue.
+In other cases I can replace `Lock` with `Lock::Async` and it would just work.
+Why? The answer is in the following section. Why not always `Lock::Async`?
+Because it is rather slow. How much slower? Read on!
 
 ## `Lock` vs. `Lock::Async`
 
@@ -61,11 +63,11 @@ behavior.
 
 `Lock::Async` is built around `Promise` and `await`. The point is that in Raku
 `await` tries to release a thread and return it back into the scheduler pool,
-making it immediately available to the user. So does `Lock::Async` too: instead
+making it immediately available to other jobs. So does `Lock::Async` too: instead
 of blocking, its `protect` method enters into `await`.
 
-BTW, it might be surprising to many, but `lock` method of `Lock::Async` doesn't
-actually lock.
+BTW, it might be surprising to many, but `lock` method of `Lock::Async` [doesn't
+actually lock by itself](https://docs.raku.org/type/Lock::Async#method_lock). 
 
 ## Atomics
 
@@ -73,10 +75,10 @@ There is one more way to protect a block of code from re-entering. If you're
 well familiar with atomic operations then you're likely to know about it. For
 the rest I would briefly explain it in this section.
 
-Let me skip the part about the atomic operations, 
+Let me skip the part about the atomic operations as such, 
 [Wikipedia has it](https://en.wikipedia.org/wiki/Linearizability#Primitive_atomic_instructions).
 In particular we need CAS ([Wikipedia again](https://en.wikipedia.org/wiki/Compare-and-swap)
-and [Raku implementation](https://docs.raku.org/routine/cas)). In natural
+and [Raku implementation](https://docs.raku.org/routine/cas)). In a natural
 language terms the atomic approach can be "programmed" like this:
 
 1. Take a variable and set it to _locked_ state if not set already; repeat
@@ -96,25 +98,27 @@ $lock ⚛= 0;                     # unlock
 
 Pretty simple, isn't it? Let's see what are the specs of this approach:
 
-1. It is blocking, same as `Lock`
-2. It fast (will get back to this later)
+1. It is blocking, akin to `Lock`
+2. It's fast (will get back to this later)
 3. The lock operation might be a CPU hog
 
-Item 2 is currently speculative, but guessable. Contrary to `Lock`, we don't use
-a system call but base the lock on a purely computational trick.
+Item 2 is speculative at this moment, but guessable. Contrary to `Lock`, we
+don't use a system call but rather base the lock on a purely computational
+trick.
 
 Item 3 is apparent because even though `Lock` doesn't release it's thread for
-Raku scheduler, it does release CPU core to the system.
+Raku scheduler, it does release a CPU core to the system.
 
 ## Benchmarkers, let's go benchmarking!
 
-As I found myself in between of two big tasks today, I decided to scratch this
-itch is comparing different ways of locking. Apparently, we have three different
-kinds of locks, based upon different techniques. But aside of that, we also have
-two different approaches to using them. One is manual locking/unlocking withing
-a block. The other one is to use a wrapper method `protect`, available on `Lock`
-and `Lock::Async`. There is no data type for atomic locking, but this we can do
-ourselves.
+As I found myself in between of two big tasks today, I decided to make a pause
+and scratch the itch of comparing different approaches to locking. Apparently,
+we have three different kinds of locks at our hands, each based upon a specific
+approach. But aside of that, we also have two different modes of using them. One
+is explicit locking/unlocking withing the protected block. The other one is to
+use a wrapper method `protect`, available on `Lock` and `Lock::Async`.  There is
+no data type for atomic locking, but this is something we can do ourselves and
+have the method implemented the same way, as `Lock` does.
 
 Here is the code I used:
 
@@ -296,30 +300,48 @@ Without deep analysis, I can make a few conclusions:
   counter-intuitive, this outcome has a good explanation stemming from the
   implementation details of the class. But the point is clear: use the `protect`
   method whenever applicable.
-- `Lock::Async` is not just much slower, than the other two. It demonstrated
+- `Lock::Async` is not simply much slower, than the other two. It demonstrates
   just unacceptable results under heavy loads. Aside of that, it also becomes
-  quite erratic. It doesn't mean it is to be unconditionally avoided, but its
-  use must be carefully justified.
+  quite erratic under the conditions. Though this doesn't mean it is to be
+  unconditionally avoided, but its use must be carefully justified.
 
 And to conclude with, the performance win of atomic approach doesn't make it a
 clear winner due to it's high CPU cost. I would say that it is a good candidate
 to consider when there is need to protect small, short-acting operations.
-Especially at performance-sensitive locations. And even then there are limiting
-pre-conditions:
+Especially in performance-sensitive locations. And even then there are
+restricting conditions to be fulfilled:
 
 - little probability of high number of collisions per lock-variable. I'm not
   ready to talk about particular numbers, but, say, up to 3-4 active locks could
   be acceptable, but 10 and more are likely not. It could really be more
-  useful to react a little longer but give up CPU for other tasks.
+  useful to react a little longer but give up CPU for other tasks than to have
+  several cores locked in nearly useless loop.
 - the protected operations are to be really-really short.
+
+In other words, the way we utilize CPU matters. If aggregated CPU time consumed
+by locking loops is larger than that needed for `Lock` to release+acquire the
+involved cores then atomic becomes a waste of resources.
 
 ## Conclusion
 
 By this moment I look at the above and wonder: are there any use for the atomic
-approach at all? Hm...
+approach at all? Hm... 😉 
 
-PS. My apologies for all the errors. Lack of time doesn't allow me to proof-read
-this post. Will try to fix it ASAP.
+By carefully considering this dilemma I would preliminary put it this way: I
+would be acceptable for an application as it knows the conditions it would be
+operated in and this makes it possible to estimate the outcomes.
+
+But it is most certainly no go for a library/module which has no idea where and
+how would it be used.
+
+It is much easier to formulate the rule of thumb for `Lock::Async` acceptance:
+
+- many, perhaps hundreds, of simultaneous operations
+- no high CPU load
+
+Sounds like some heavily parallelized I/O to me, for example. In such cases it
+is less important to be really fast but it does matter not to hit the
+`max_threads` limit.
 
 ## Ukraine
 
