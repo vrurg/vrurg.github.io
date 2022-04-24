@@ -319,7 +319,7 @@ By this moment I look at the above and wonder: are there any use for the atomic
 approach at all? Hm...
 
 PS. My apologies for all the errors. Lack of time doesn't allow me to proof-read
-this post. Will try to fix any found ASAP.
+this post. Will try to fix it ASAP.
 
 ## Ukraine
 
