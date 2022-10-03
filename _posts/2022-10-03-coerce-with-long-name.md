@@ -12,7 +12,7 @@ class Foo::Bar {
 }
 ```
 
-And there is another class `Baz` for which want it to be coercible into
+And there is another class `Baz` for which we want it to be coercible into
 `Foo::Bar`. No problem!
 
 ```
@@ -21,7 +21,7 @@ class Baz {
 }
 ```
 
-Now it not a problem to
+Now we can do:
 
 ```
 sub foo(Foo::Bar() $v) { say $v }
