@@ -25,6 +25,7 @@ group :jekyll_plugins do
   gem "kramdown"
   gem "nokogiri"
   gem "commonmarker", ">= 0.23.4"
+  gem "webrick"
   #gem "kramdown", ">= 2.3.1"
   #gem "nokogiri", ">= 1.11.0.rc4"
   # gem "jekyll-archives"
