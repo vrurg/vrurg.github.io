@@ -1,6 +1,9 @@
 ---
 title: The Report On New Coercions
-tags: Raku MOP core
+tags:
+    - Raku
+    - MOP
+    - core
 toc: true
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"

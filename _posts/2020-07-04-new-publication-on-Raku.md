@@ -1,6 +1,9 @@
 ---
 title: A new place, a new publication
-tags: Raku publication article
+tags:
+    - Raku
+    - publication
+    - article
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

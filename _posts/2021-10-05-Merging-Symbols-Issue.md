@@ -1,6 +1,9 @@
 ---
 title: Merging Symbols Issue
-tags: Raku module thoughts
+tags:
+    - Raku
+    - module
+    - thoughts
 toc: true
 #date: 2021-05-05 23:00:00
 header:

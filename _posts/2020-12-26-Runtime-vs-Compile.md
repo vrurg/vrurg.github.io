@@ -1,6 +1,10 @@
 ---
 title: Runtime vs. Compilation, Or Reply \#2
-tags: Raku coercion reply role
+tags:
+    - Raku
+    - coercion
+    - reply
+    - role
 toc: true
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"

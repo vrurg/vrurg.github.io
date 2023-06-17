@@ -1,6 +1,12 @@
 ---
 title: An Error In The Roles Article
-tags: Raku publication article role roles error
+tags:
+    - Raku
+    - publication
+    - article
+    - role
+    - roles
+    - error
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

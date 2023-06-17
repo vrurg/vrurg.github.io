@@ -1,6 +1,10 @@
 ---
 title: Secure JSONification?
-tags: Raku JSON security thoughts
+tags:
+    - Raku
+    - JSON
+    - security
+    - thoughts
 #toc: false
 #date: 2021-05-05 23:00:00
 header:

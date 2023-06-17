@@ -1,6 +1,9 @@
 ---
 title: A New `will complain` Trait
-tags: Raku trait feature
+tags:
+    - Raku
+    - trait
+    - feature
 toc: true
 #date: 2022-04-18 20:00:00
 header:

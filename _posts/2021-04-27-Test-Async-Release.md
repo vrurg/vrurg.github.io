@@ -1,6 +1,11 @@
 ---
 title: Test::Async v0.1.1 Release
-tags: Raku module asynchronous threaded test
+tags:
+    - Raku
+    - module
+    - asynchronous
+    - threaded
+    - test
 toc: true
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"

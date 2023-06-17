@@ -1,6 +1,10 @@
 ---
 title: My Work Environment
-tags: Raku editor IDE misc
+tags:
+    - Raku
+    - editor
+    - IDE
+    - misc
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

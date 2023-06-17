@@ -1,6 +1,9 @@
 ---
 title: The Raku Steering Council Election
-tags: Raku council RSC
+tags:
+    - Raku
+    - council
+    - RSC
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

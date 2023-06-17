@@ -1,6 +1,8 @@
 ---
 title: A Note On Raku Performance
-tags: Raku performance
+tags:
+    - Raku
+    - performance
 toc: true
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"

@@ -1,6 +1,11 @@
 ---
 title: A New Release Of Cro::RPC::JSON
-tags: Raku module asynchronous threaded Cro
+tags:
+    - Raku
+    - module
+    - asynchronous
+    - threaded
+    - Cro
 toc: true
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"

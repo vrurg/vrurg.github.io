@@ -1,6 +1,11 @@
 ---
 title: A Long Promised Article About Roles
-tags: Raku publication article role roles
+tags:
+    - Raku
+    - publication
+    - article
+    - role
+    - roles
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

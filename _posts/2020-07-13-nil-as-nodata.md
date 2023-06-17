@@ -1,6 +1,7 @@
 ---
 title: Nil As No Data
-tags: Raku 
+tags:
+    - Raku
 date: 2020-07-13 13:30:00 -0004
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"

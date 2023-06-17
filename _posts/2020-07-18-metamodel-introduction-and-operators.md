@@ -1,7 +1,10 @@
 ---
 title: "Metamodel Introduction Article. Operators"
 date: 2020-07-18 10:47:00 -0004
-tags: Raku publication article
+tags:
+    - Raku
+    - publication
+    - article
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

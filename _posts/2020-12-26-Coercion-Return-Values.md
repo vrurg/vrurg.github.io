@@ -1,6 +1,10 @@
 ---
 title: On Coercion Method Return Value
-tags: Raku coercion reply role
+tags:
+    - Raku
+    - coercion
+    - reply
+    - role
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

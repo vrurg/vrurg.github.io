@@ -1,6 +1,9 @@
 ---
 title: An article about Proxy is finally complete
-tags: Raku publication article
+tags:
+    - Raku
+    - publication
+    - article
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

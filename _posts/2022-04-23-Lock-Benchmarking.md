@@ -1,6 +1,9 @@
 ---
 title: He Tested Many Locks. See What Happened Then!
-tags: Raku lock benchmark
+tags:
+    - Raku
+    - lock
+    - benchmark
 toc: true
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"

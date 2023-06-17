@@ -1,6 +1,9 @@
 ---
 title: New Articles Redaction
-tags: Raku publication article
+tags:
+    - Raku
+    - publication
+    - article
 ---
 In the [Everything Is An Object.
 MOP.](/arfb-publication/02-everything-is-an-object-mop/) article I made a

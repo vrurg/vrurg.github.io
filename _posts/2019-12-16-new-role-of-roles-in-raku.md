@@ -2,7 +2,10 @@
 title: New Role Of Roles In Raku
 toc: true
 toc_icon: book
-tags: Raku roles MOP
+tags:
+    - Raku
+    - roles
+    - MOP
 header: 
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---

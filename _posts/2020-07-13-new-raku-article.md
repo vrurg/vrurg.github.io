@@ -1,7 +1,10 @@
 ---
 title: A New Article
 date: 2020-07-13 13:57:00 -0004
-tags: Raku publication article
+tags:
+    - Raku
+    - publication
+    - article
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---
