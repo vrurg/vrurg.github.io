@@ -10,11 +10,10 @@ tags:
 toc: true
 header:
   teaser: /assets/images/Camelia-200px-SQUARE.png
-draft: true
 slug: libxml-class-release
 categories:
   - Release
-date: 2023-06-16
+date: 2023-06-18
 ---
 The thing is: I hate XML.
 
