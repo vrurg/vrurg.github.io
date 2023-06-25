@@ -7,6 +7,12 @@ main:
       url: "/donate_to_ukraine.html"
 
 default:
+    - title: "Raku Resources"
+      children:
+      - title: "The Raku Language"
+        url: "https://raku.org"
+      - title: "The Rakudo Compiler"
+        url: "https://rakudo.org"
     - title: "HELP TO UKRAINE"
       url: "/donate_to_ukraine.html"
     - title: "PUBLICATIONS"

@@ -1,5 +1,8 @@
 ---
 title: "Containers And Symbols"
+tags: Raku
+categories: ["ARFB", "Publications"]
+logo: /assets/images/Camelia-200px-SQUARE.png
 ---
 
 I’m not going to be original anyway and gonna start with the most traditional example around:
@@ -26,9 +29,9 @@ say $foo;
 Keeping in mind that `~=` is a string append operator, what output do we expect
 here? Apparently, it’s
 
-> ```  
-> Hello world!  
-> ```  
+> ```
+> Hello world!
+> ```
 
 again. So far, so good! But try adding a single colon:
 
@@ -41,9 +44,9 @@ say $foo;
 
 and the output becomes:
 
-> ```  
-> Hello world! This is Raku!  
-> ```  
+> ```
+> Hello world! This is Raku!
+> ```
 
 `:=` is called _binding operator_ and the rest of this chapter I’m going to deal
 with explaining of what’s going on in the above example.
@@ -233,7 +236,7 @@ statement result making the line above similar to:
 my @a;
 my @b = [1, 2];
 @a = @b;
-say @a.raku; # [1, 2] 
+say @a.raku; # [1, 2]
 ```
 
 Other ways are not related to our subject here and I’m willing not to focus on

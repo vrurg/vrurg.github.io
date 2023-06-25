@@ -1,5 +1,7 @@
 ---
 title: Roles Or When One Is Many
+tags: Raku
+categories: ["ARFB", "Publications"]
 logo: /assets/images/Camelia-200px-SQUARE.png
 ---
 A thing which puts [Raku](https://raku.org) pretty much apart from Perl is that
@@ -105,7 +107,7 @@ predictable result, according to [the
 documentation](https://docs.raku.org/routine/lookup):
 
 ```
-class Foo { method foo { } }; 
+class Foo { method foo { } };
 say Foo.^lookup("foo"); # foo
 ```
 
@@ -215,7 +217,7 @@ Perl6::Metamodel::ParametricRoleHOW, Perl6::Metamodel::ParametricRoleHOW
 
 It also looks familiar except... Yes, there is no `Group` in the class name and
 I'd like to welcome our second kind of role! Actually, we know it already. If I
-wave my hand like _this_ and distract my spectators with... 
+wave my hand like _this_ and distract my spectators with...
 
 Oops, the last sentence was supposed to land in another window! For you, my
 audience, I have another line of code:
@@ -269,7 +271,7 @@ my \r = role R2[::T] does R1[Int, T] { }
 Let's introspect `R1`:
 
 ```
-# We know there is only one role, 
+# We know there is only one role,
 # hence .head for prettier output
 say r.^roles.map({ .^name ~ " of " ~ .HOW.^name }).head;
 # R1[Int,T] of Perl6::Metamodel::CurriedRoleHOW
@@ -348,7 +350,7 @@ say C.^roles
 
 Interestingly enough, we find a mixture of different kinds of roles here. The
 reason for this is floating atop: contrary to `R3` two other roles are
-parameterized. 
+parameterized.
 
 But since I love to confuse the audience, I will tell you this: those are
 actually not the roles the class is built from!
@@ -387,10 +389,10 @@ We can now take a step back and overview the lifecycle of a role:
 
 1. A `Perl6::Metamodel::ParametricRoleGroupHOW` is created.
 2. A `Perl6::Metamodel::ParametricRoleHOW` is created and added to the group.
-3. A class is declared and `does` the role. The compiler tries to parameterize the role and `Perl6::Metamodel::CurriedRoleHOW` is created if the parameterization is needed; otherwise the original `Perl6::Metamodel::ParametricRoleHOW` is used. 
+3. A class is declared and `does` the role. The compiler tries to parameterize the role and `Perl6::Metamodel::CurriedRoleHOW` is created if the parameterization is needed; otherwise the original `Perl6::Metamodel::ParametricRoleHOW` is used.
 4. The result of the parameterization is added to the class' list of roles.
 5. When class is composed all roles added at the previous step are getting specialized with their respective parameters and the class type object. At this point we get role type objects backed by `Perl6::Metamodel::ConcreteRoleHOW` or, in other words, role concretizations.
-6. The concretizations are added to the class. 
+6. The concretizations are added to the class.
 7. Concretizations are applied by migrating their attributes and methods into the class type object.
 
 It worth noting that concretizations are kept as separate entities, apart from
@@ -477,11 +479,11 @@ it **is** a signature, as a matter of fact. If I to re-word a role declaration `
 R[::T, ::V] {}` in somewhat more human-programmer-readable way, it might look
 like:
 
-> Declare a candidate role `R` with body block `sub (::T, ::V) {...}`  
+> Declare a candidate role `R` with body block `sub (::T, ::V) {...}`
 
 ### A Bit Of Cold Shower
 
-So far, so good. But there is a catch: named parameters. 
+So far, so good. But there is a catch: named parameters.
 
 **NOTE** that this section describes the implementation of Rakudo compiler
 2021.06 release. The situation might change with a future compiler release.
@@ -508,7 +510,7 @@ C3.foo; # none, Int
 Looks like it. But this is where the good news ends:
 
 ```
-say C1.^roles[0] =:= C2.^roles[0]; # False 
+say C1.^roles[0] =:= C2.^roles[0]; # False
 say C3.^roles[0] =:= C4.^roles[0]; # True
 ```
 
@@ -533,7 +535,7 @@ say R[Int] ~~ R[IntStr]; # False
 ```
 
 With all this in mind I'd rather advice to avoid named parameters in role
-declarations. 
+declarations.
 
 Unfortunately, the problem doesn't have a reasonable solution for now because
 support for named parameters is not provided by MoarVM implementation of type

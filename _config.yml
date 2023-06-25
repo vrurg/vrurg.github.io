@@ -134,6 +134,7 @@ defaults:
         nav: default
       header:
         overlay_image: "/assets/images/UAFlag.jpg"
+        caption: "[**Donate For Ukraine**](/donate_to_ukraine.html)"
   - scope:
       path: ""
       type: posts
@@ -153,6 +154,7 @@ defaults:
         nav: default
       header:
         overlay_image: "/assets/images/UAFlag.jpg"
+        caption: "[**Donate For Ukraine**](/donate_to_ukraine.html)"
         show_overlay_excerpt: false
   - scope:
       path: ""
@@ -172,3 +174,4 @@ defaults:
         overlay_image: /assets/images/UAFlag.jpg
         logo: "https://github.com/Raku/marketing/raw/master/LOGOs/Camelia/Primary--1533512212/Camelia-200px-SQUARE.png"
         show_overlay_excerpt: false
+        caption: "[**Donate For Ukraine**](/donate_to_ukraine.html)"

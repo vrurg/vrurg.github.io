@@ -1,6 +1,8 @@
 ---
 title: Introduction
 toc: false
+tags: Raku
+categories: ["ARFB", "Publications"]
 header:
   teaser: "/assets/images/Camelia-200px-SQUARE.png"
 ---
@@ -46,7 +48,7 @@ each next article would be getting to more complicated concepts as gradual as
 possible.
 
 As a matter of fact, the series just've started by telling about Perl6 and Raku
-and how they're the same. It is now time to tell about Rakudo. 
+and how they're the same. It is now time to tell about Rakudo.
 
 In the modern world of programming it is now common place for a language to be
 its implementation.  Perl is the `perl` command, Ruby is `ruby`, etc. Not that

@@ -5,9 +5,39 @@
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+
+$monospace: "Roboto Mono", "Victor Mono Medium", Monaco, Consolas, "Lucida Console", monospace !default;
+
 @import "minimal-mistakes"; // main partials
+
+html {
+    font-size: 16px; // change to whatever
+
+    @include breakpoint($medium) {
+        font-size: 17px; // change to whatever
+    }
+
+    @include breakpoint($large) {
+        font-size: 18px; // change to whatever
+    }
+
+    @include breakpoint($x-large) {
+        font-size: 18px; // change to whatever
+        #main {
+            max-width: 1980px;
+        }
+    }
+}
+
+.archive__item-excerpt {
+    font-size: 1em;
+}
 
 .page__content pre {
     font-size: 100%;
     padding-left: 2em;
+}
+
+.page__content p {
+    text-align: justify;
 }

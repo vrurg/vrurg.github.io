@@ -1,5 +1,7 @@
 ---
 title: Defining Raku
+tags: Raku
+categories: ["ARFB", "Publications"]
 logo: /assets/images/Camelia-200px-SQUARE.png
 ---
 When I’m writing texts like this one I always imagine a curious and vigilant
@@ -8,7 +10,7 @@ this perisher annoys me by demanding explanations on the following (a quote):
 
 > You repeated for several times that Rakudo is not Raku itself, it’s just an
 > implementation. Ok, then how do we know that the code Rakudo executes is
-> actually Raku? Where can I find the precise definition of Raku?  
+> actually Raku? Where can I find the precise definition of Raku?
 
 The problem is: it’s the darn right question to ask! Because to the surprise of
 many, Raku doesn’t have a formally written textual specification. Such thing
@@ -162,10 +164,10 @@ documentation](https://docs.raku.org/type/Hash)).
 Now, as I hopefully made the basics clearer, here is what the output of the
 example looks like:
 
-> ```  
-($*DISPATCHER $bar $_)  
-($*DISPATCHER $_ $foo)  
-```  
+> ```
+($*DISPATCHER $bar $_)
+($*DISPATCHER $_ $foo)
+```
 
 Never mind `$*DISPATCHER` and `$_`, they're pre-installed by the compiler and
 are out of the scope of this article.
@@ -194,11 +196,11 @@ OUTER::OUTER::OUTER::OUTER::.keys` - to see even longer list of symbols! Raku
 would even have to truncate the list for you for make it more appealing.
 
 Among the symbols printed you may find some already familiar ones like `Int`,
-`Str`, `mkdir`, `shift`, etc., etc.  
+`Str`, `mkdir`, `shift`, etc., etc.
 
 More precision could now be added to Raku definition: it is a syntax with a
 library providing the core API. For the latter single word _core_ is often used.
-Evidently, the symbols we've discovered are part of the core. 
+Evidently, the symbols we've discovered are part of the core.
 
 I'm sure by this moment any beginner would still have more questions than
 anwers. That's because we still need more pieces of the puzzle. So, let's move
@@ -317,7 +319,7 @@ example:
 ```
 use v6.c;
 unit module Only6c;
-``` 
+```
 
 This means that the module `Only6c` is unlikely be compatible with any other
 Raku version. But this doesn't pose a risk of being incompatible with a script
@@ -385,7 +387,7 @@ From Rakudo implementation point of view the situation looks like this:
 	2. `CORE.c` is compiled as having no setting.
 	3. `CORE.d` is compiled with `CORE.c` as its setting.
     4. `CORE.e` is compiled with `CORE.d` as its setting.
-      
+
        The last two items is how core settings form the lexical nesting.
 2. At user code compile time:
 	1. Compiler determines compunit's  language version.
@@ -471,8 +473,8 @@ versionized namespaces come to rescue:
 
 ```
 sub is-grammar($g) is export {
-    $g === CORE::v6c::Grammar || $g === CORE::v6e::Grammar 
-        ?? "grammar" 
+    $g === CORE::v6c::Grammar || $g === CORE::v6e::Grammar
+        ?? "grammar"
         !! "no idea";
 }
 ```

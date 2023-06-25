@@ -1,5 +1,7 @@
 ---
 title: "The Metamodel: Introduction To MOP"
+tags: Raku MOP
+categories: ["ARFB", "Publications"]
 logo: /assets/images/Camelia-200px-SQUARE.png
 ---
 In the previous articles I discussed several bits and pieces about Raku
@@ -139,7 +141,7 @@ We can introspect the class for the methods it has:
 say Foo.^methods; # (foo BUILDALL)
 ```
 
-So, is `^meta-foo` is gone? 
+So, is `^meta-foo` is gone?
 
 ```
 say Foo.^meta-foo; # meta-foo

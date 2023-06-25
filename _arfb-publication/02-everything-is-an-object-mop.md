@@ -1,5 +1,7 @@
 ---
 title: Everything Is An Object. MOP.
+tags: Raku
+categories: ["ARFB", "Publications"]
 logo: /assets/images/Camelia-200px-SQUARE.png
 ---
 
@@ -57,7 +59,7 @@ say "foo, ", { my $bar = "bar"; say $bar; }.WHAT;
 Yes, the line _"foo, (Block)"_ we get output by this example is exactly what you
 think it is: a block in Raku is actually a `Block` class instance!
 
-Methods like `WHAT` belong to a category of 
+Methods like `WHAT` belong to a category of
 
 # [Introspection](https://docs.raku.org/language/mop) methods
 
@@ -66,7 +68,7 @@ an object. On the personal level, they're one of numerous reasons why I _love_
 Raku. For one reason or another sometimes it is necessary to analyse a value aka
 object we have somewhere. In case of a reverse-engineering we're likely to know
 nothing about the object and with introspection we're able to recover most if
-not all of the information and data needed. Similarly, introspection is often 
+not all of the information and data needed. Similarly, introspection is often
 handy for debugging if by accident an object of wrong type happens at wrong
 location.
 
@@ -84,8 +86,8 @@ say $a.WHICH; # Int|42
 
 Note the difference. The first `say` tells us that the subject of method `WHICH`
 is a type `Int`. In Raku it kind of means _`$a` is undefined_. (_I hope to get
-back to this "kind of" thing in one of the later articles._) The second `say` 
-tells us that the object is a concrete value _42_ of type `Int`. 
+back to this "kind of" thing in one of the later articles._) The second `say`
+tells us that the object is a concrete value _42_ of type `Int`.
 
 As you can see from the example, it is really not easy to indisputably classify
 `WHICH`.
@@ -237,7 +239,7 @@ We asked `Metamodel::ClassHOW` who is its meta-class and were told that it is
 say Int.HOW.HOW.HOW.^name; # KnowHOW
 ```
 
-`NQPClassHOW` is an instance of `KnowHOW`. 
+`NQPClassHOW` is an instance of `KnowHOW`.
 
 ```
 say Int.HOW.HOW.HOW.HOW.^name; # KnowHOW
@@ -273,7 +275,7 @@ meta-object. Or find a method object on a class. But this subject worth a
 dedicated article.
 
 We could say that Raku type system is a layer implemented above Raku Metamodel
-using MOP. 
+using MOP.
 
 ## Surprise Me!
 
