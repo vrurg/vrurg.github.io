@@ -28,7 +28,7 @@ group :jekyll_plugins do
   gem "webrick"
   #gem "kramdown", ">= 2.3.1"
   #gem "nokogiri", ">= 1.11.0.rc4"
-  # gem "jekyll-archives"
+  gem "jekyll-archives"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
