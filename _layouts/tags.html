@@ -1,26 +1,21 @@
 ---
-layout: archive
+layout: single
 ---
 
 {{ content }}
 
-{% assign tags_max = 0 %}
-{% for tag in site.tags %}
-  {% if tag[1].size > tags_max %}
-    {% assign tags_max = tag[1].size %}
-  {% endif %}
+{% comment %} Creates an empty array {% endcomment %}
+{% assign tags = "" | split:"" %}
+
+{% comment %}Creates an array of tags names{% endcomment %}
+{% for t in site.tags %}
+  {% assign tags = tags | push: t[0] %}
 {% endfor %}
 
+{% assign sorted_tags = tags | sort_natural %}
+
 <ul class="taxonomy__index">
-  {% for i in (1..tags_max) reversed %}
-    {% for tag in site.tags %}
-      {% if tag[1].size == i %}
-        <li>
-          <a href="{{ tag[0] | slugify }}/">
-            <strong>{{ tag[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
-          </a>
-        </li>
-      {% endif %}
+    {% for t in sorted_tags %}
+        <a href="{{ t }}/"><strong>{{ t }}</strong> <span class="taxonomy__count">{{ site.tags[t].size }}</span></a>
     {% endfor %}
-  {% endfor %}
 </ul>
