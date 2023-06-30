@@ -16,6 +16,6 @@ layout: single
 
 <ul class="taxonomy__index">
     {% for t in sorted_tags %}
-        <a href="{{ t }}/"><strong>{{ t }}</strong> <span class="taxonomy__count">{{ site.tags[t].size }}</span></a>
+        <a href="{{ t | slugify }}/"><strong>{{ t }}</strong> <span class="taxonomy__count">{{ site.tags[t].size }}</span></a>
     {% endfor %}
 </ul>
