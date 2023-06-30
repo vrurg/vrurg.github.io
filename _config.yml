@@ -61,13 +61,15 @@ jekyll-archives:
  enabled:
    - categories
    - tags
+   - year
  layouts:
    category: archive-taxonomy
    tag: archive-taxonomy
+   year: archive-taxonomy
  permalinks:
    category: /categories/:name/
    tag: /tags/:name/
-
+   year: '/years/:year/index.html'
 
 #logo: "/assets/images/UAFlag.jpg"
 #teaser: "/assets/images/UAFlag.jpg"
@@ -122,11 +124,11 @@ include:
     - _pages
 
 defaults:
-  - scope:
-      path: "_pages"
-      type: pages
-    values:
-      author_profile: true
+  # - scope:
+  #     path: "_pages"
+  #     type: pages
+  #   values:
+  #     author_profile: true
   - scope:
       path: ""
       type: pages
@@ -141,7 +143,8 @@ defaults:
       path: ""
       type: posts
     values:
-      layout: single-lflat
+      # layout: single-lflat
+      layout: single
       read_time: true
       comments: true
       share: true
@@ -180,6 +183,13 @@ defaults:
   - scope:
       path: ""
       type: tag
+    values:
+      author_profile: true
+      sidebar:
+        nav: default
+  - scope:
+      path: ""
+      type: year
     values:
       author_profile: true
       sidebar:

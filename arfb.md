@@ -1,5 +1,5 @@
 ---
-layout: single-lflat
+layout: single
 title: "Advanced Raku For Beginners"
 description: >-
     A series of articles about Raku's not so evident features
@@ -24,6 +24,6 @@ Thank you and have a great time reading!
 # List Of Articles
 
 {% for post in site.arfb-publication %}
-{% include archive-single.html %}
+    {% include archive-single.html %}
 <hr>
 {% endfor %}
