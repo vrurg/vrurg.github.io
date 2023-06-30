@@ -33,8 +33,10 @@ encoding: utf-8
 
 # Build settings
 markdown: kramdown
-remote_theme: "mmistakes/minimal-mistakes"
+# remote_theme: "mmistakes/minimal-mistakes"
+theme: minimal-mistakes-jekyll
 plugins:
+  - jekyll-archives
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
@@ -49,22 +51,22 @@ minimal_mistakes_skin: "dirt" # "air", "aqua", "contrast", "dark", "dirt", "neon
 #permalink: /:categories/:title
 
 category_archive:
-  type: liquid
+  type: jekyll-arhives
   path: /categories/
 tag_archive:
-  type: liquid
+  type: jekyll-arhives
   path: /tags/
 
-#jekyll-archives:
-#  enabled:
-#    - categories
-#    - tags
-#  layouts:
-#    category: archive-taxonomy
-#    tag: archive-taxonomy
-#  permalinks:
-#    category: /categories/:name/
-#    tag: /tags/:name/
+jekyll-archives:
+ enabled:
+   - categories
+   - tags
+ layouts:
+   category: archive-taxonomy
+   tag: archive-taxonomy
+ permalinks:
+   category: /categories/:name/
+   tag: /tags/:name/
 
 
 #logo: "/assets/images/UAFlag.jpg"
@@ -175,3 +177,10 @@ defaults:
         logo: "https://github.com/Raku/marketing/raw/master/LOGOs/Camelia/Primary--1533512212/Camelia-200px-SQUARE.png"
         show_overlay_excerpt: false
         caption: "[**Donate For Ukraine**](/donate_to_ukraine.html)"
+  - scope:
+      path: ""
+      type: tag
+    values:
+      author_profile: true
+      sidebar:
+        nav: default
