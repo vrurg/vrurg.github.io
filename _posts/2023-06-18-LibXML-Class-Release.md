@@ -1,7 +1,5 @@
 ---
 title: New Kid On The Block
-category:
-  - Release
 tags:
   - Raku
   - module
@@ -11,8 +9,6 @@ toc: true
 header:
   teaser: /assets/images/Camelia-200px-SQUARE.png
 slug: libxml-class-release
-categories:
-  - Release
 date: 2023-06-18
 ---
 The thing is: I hate XML.

@@ -143,7 +143,6 @@ defaults:
       path: ""
       type: posts
     values:
-      # layout: single-lflat
       layout: single
       read_time: true
       comments: true
