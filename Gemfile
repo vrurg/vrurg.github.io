@@ -22,7 +22,7 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
   gem "jekyll-include-cache"
   gem 'jekyll-mentions'
-  gem 'jekyll-paginate'
+  gem 'jekyll-paginate-v2'
   gem 'jekyll-sitemap'
   gem "jekyll-gist"
   gem "jekyll-archives"

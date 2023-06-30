@@ -38,7 +38,7 @@ theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-archives
   - jekyll-feed
-  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-mentions
@@ -74,8 +74,16 @@ jekyll-archives:
 #logo: "/assets/images/UAFlag.jpg"
 #teaser: "/assets/images/UAFlag.jpg"
 
-paginate: 5
-paginate_path: /page:num/
+# The default _includes/paginator.html doesn't support jekyll-paginator-v2 permalinks but relies on this setting.
+paginate_path: /page/:num/
+
+pagination:
+  enabled: true
+  debug: false
+  collection: 'posts'
+  per_page: 10
+  permalink: '/page/:num/'
+
 timezone: America/New_York
 search: true
 og_image: /assets/images/Camelia-200px-SQUARE.png
