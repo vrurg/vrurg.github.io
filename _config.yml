@@ -82,6 +82,7 @@ pagination:
   debug: false
   collection: 'posts'
   per_page: 10
+  sort_reverse: true
   permalink: '/page/:num/'
 
 timezone: America/New_York
