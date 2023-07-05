@@ -296,7 +296,7 @@ breaking changes on major version transitions.
 Generally speaking, the problem of being backcompat to previous versions doesn't
 have an ideal solution. One way or another, it is often a matter of chosing
 between a bad tradeoff and a set of horrible ones. But when chosen, the rules
-are to be spoken out load, clear, and be followed with no exceptions. This is
+are to be spoken out loud, clear, and be followed with no exceptions. This is
 where Raku does do the right thing. The rules I currently want to focus upon
 are:
 
