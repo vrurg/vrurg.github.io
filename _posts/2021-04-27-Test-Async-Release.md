@@ -15,6 +15,8 @@ the new features in [`Test::Async`](https://github.com/vrurg/raku-Test-Async).
 But it wouldn't be me unless I screw up in a way.  Apparently, this time a have
 a little story to tell. But first, the announce itself.
 
+<!--more-->
+
 # v0.1.0 and v0.1.1
 
 ## Tool Call Stack And Achoring
@@ -28,15 +30,15 @@ invokes another test tool then the caller gets overwritten (what a groundbreakin
 discovery, isn't it? 🤦). For example:
 
 ```raku
-method is-my-structure-correct(...) 
-    is test-tool 
+method is-my-structure-correct(...)
+    is test-tool
 {
     ...
     self.is-deeply: ...;
     # At this point tool caller is pointing at the line above.
     # Therefore, proclaim will not report the
     # original location in a .rakutest file.
-    self.proclaim: False, ...; 
+    self.proclaim: False, ...;
 }
 ```
 
@@ -56,8 +58,8 @@ Ok, an example would serve better than a thousand words. Again, here is a
 compound test tool:
 
 ```raku
-method my-compound-test(Str:D $code, ...) 
-    is test-tool 
+method my-compound-test(Str:D $code, ...)
+    is test-tool
 {
     ...
     self.throws-like: ...;
@@ -82,12 +84,12 @@ This *will* throw. Though not with *my exception*, but with
 `$obj` declared!
 
 My answer to the challenge is *anchoring* a tool call stack entry. It means that
-any nested call to any test tool will consider that entry as if it is its own 
+any nested call to any test tool will consider that entry as if it is its own
 direct caller:
 
 ```raku
-method my-compound-test(Str:D $code, ...) 
-    is test-tool(:anchored) 
+method my-compound-test(Str:D $code, ...)
+    is test-tool(:anchored)
 {
     ...
     self.throws-like: ...;
@@ -100,8 +102,8 @@ _"Complex one"_ subtest from the above example. And even if we wrap it into a
 nested subtest:
 
 ```raku
-method my-compound-test(Str:D $code, ...) 
-    is test-tool(:anchored) 
+method my-compound-test(Str:D $code, ...)
+    is test-tool(:anchored)
 {
     ...
     self.subtest: "compound", :hidden, :instant, {
@@ -223,7 +225,7 @@ done-testing;
 ```
 
 I think nobody would disagree that a linear code of the kind is much easier to
-maintain than a pile of nesting conditions. 
+maintain than a pile of nesting conditions.
 
 The other great thing is that the example can be easily be wrapped in a subtest
 with no changes needed.
@@ -254,9 +256,9 @@ subtest "Concurrent Case" => {
             do-in-thread-test: id => $thread-num;
         }
     }
-    # Do some more testing which doesn't depend 
+    # Do some more testing which doesn't depend
     # on the threads started
-    ...; 
+    ...;
 }
 ```
 
@@ -273,7 +275,7 @@ test-bundle MyAppBundle {
         self.pass: "control: we're in a thread";
         ...
         self.is: $got, $expected, "message";
-        ... 
+        ...
     }
 }
 ```

@@ -21,6 +21,8 @@ section of the
 article](/arfb-publication/07-roles-or-when-one-is-many/#a-bit-of-cold-shower)
 to explain what is actually going on.
 
+<!--more-->
+
 In this post I will share more detailed explanation of what's going on for those
 interested in it. If anybody wish to follow me by watching the code open the
 _src/Perl6/Metamodel/ParametricRoleGroupHOW.nqp_ file in Rakudo sources. There

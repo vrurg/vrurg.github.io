@@ -11,6 +11,8 @@ header:
 These clickbaiting titles are so horrible, I couldn't stand mocking them! But
 at least mine speaks truth.
 
+<!--more-->
+
 My recent tasks are spinning around concurrency in one way or another. And where
 the concurrency is there are locks. Basically, introducing a lock is the most
 popular and the most straightforward solution for most race conditions one could
@@ -36,7 +38,7 @@ BEGIN PROCESS::<$SCHEDULER> = ThreadPoolScheduler.new: max_threads => 32;
 
 my Lock $l .= new;
 my Promise $p .= new;
-my @p; 
+my @p;
 
 @p.push: start $l.protect: { await $p; };
 
@@ -70,7 +72,7 @@ making it immediately available to other jobs. So does `Lock::Async` too: instea
 of blocking, its `protect` method enters into `await`.
 
 BTW, it might be surprising to many, but `lock` method of `Lock::Async` [doesn't
-actually lock by itself](https://docs.raku.org/type/Lock::Async#method_lock). 
+actually lock by itself](https://docs.raku.org/type/Lock::Async#method_lock).
 
 ## Atomics
 
@@ -78,7 +80,7 @@ There is one more way to protect a block of code from re-entering. If you're
 well familiar with atomic operations then you're likely to know about it. For
 the rest I would briefly explain it in this section.
 
-Let me skip the part about the atomic operations as such, 
+Let me skip the part about the atomic operations as such,
 [Wikipedia has it](https://en.wikipedia.org/wiki/Linearizability#Primitive_atomic_instructions).
 In particular we need CAS ([Wikipedia again](https://en.wikipedia.org/wiki/Compare-and-swap)
 and [Raku implementation](https://docs.raku.org/routine/cas)). In a natural
@@ -328,7 +330,7 @@ involved cores then atomic becomes a waste of resources.
 ## Conclusion
 
 By this moment I look at the above and wonder: are there any use for the atomic
-approach at all? Hm... 😉 
+approach at all? Hm... 😉
 
 By carefully considering this dilemma I would preliminary put it this way: I
 would be acceptable for an application as it knows the conditions it would be

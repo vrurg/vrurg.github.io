@@ -18,6 +18,8 @@ starting from call to a method-constructor. This article is going to take the mo
 as considering how types are coming to be, and by stretching the subject all the way down to object destruction (when
 and if that happens).
 
+<!--more-->
+
 Most focus here would be given to the _class_ as a type kind (according to the definition in the [Metamodel:
 Archetypes](/arfb-publication/08-metamodel-archetypes/) article), but other kinds are going to be covered too from the
 perspective of a type object lifetime.

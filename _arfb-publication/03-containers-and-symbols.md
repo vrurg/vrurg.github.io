@@ -16,6 +16,8 @@ It shouldn’t be to hard to see that what’s done is a variable declared and t
 it is printed to the console (`say` is similar to `print` and always appends a
 new line at the end).
 
+<!--more-->
+
 Let’s bring a little useless fun into this snippet. First, start with a couple
 of additional lines:
 

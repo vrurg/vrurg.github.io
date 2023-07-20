@@ -12,6 +12,8 @@ One of the prominent features of the Raku language is its extensive type system.
 the standard classes and roles but it is about _the system_ where these two are not the only kind of types allowed. Is
 it still unclear what we're talking about? Then let's have a look at a fundamental concept of the metamodel.
 
+<!--more-->
+
 # On The Surface
 
 The first things that pop up in minds of OO programmers would be classes and, next to them,

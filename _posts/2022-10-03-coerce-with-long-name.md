@@ -18,6 +18,8 @@ class Foo::Bar {
 And there is another class `Baz` for which we want it to be coercible into
 `Foo::Bar`. No problem!
 
+<!--more-->
+
 ```
 class Baz {
     method Foo::Bar() { Foo::Bar.new }

@@ -10,6 +10,8 @@ header:
 ---
 Just have noticed that normally I have 4 editors/IDEs running at the same time:
 
+<!--more-->
+
 - [Comma](https://commaide.com/) for modules and an in-house project
 - [Vim](https://vim.org) for scripts, blog and articles, and Perl
 - [Atom](https://atom.io) for Rakudo core sources, where Vim Raku syntax support seems to be too slow for some large files

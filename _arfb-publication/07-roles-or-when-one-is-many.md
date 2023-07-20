@@ -13,6 +13,8 @@ know that there are explanations and that they are certainly logical.
 Thus, I have a trick for you. Look at the code and tell me: how many roles do
 you see here?
 
+<!--more-->
+
 ```
 role R[::T] { has T $.a; }
 class C does R[Int] { }

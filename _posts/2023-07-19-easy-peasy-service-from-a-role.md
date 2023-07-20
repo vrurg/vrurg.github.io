@@ -12,6 +12,8 @@ I was always concerned about making things easier.
 No, not this way. A technology must be easy to start with, but also be easy in accessing its advanced or fine-tunable
 features. Let's have an example of the former.
 
+<!--more-->
+
 ## Disclaimer
 
 This post is a quick hack, no proof-reading or error checking is done. Please, feel free to report any issue.

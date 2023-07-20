@@ -13,6 +13,7 @@ A while ago I promised a couple of people an article about Raku roles. To be
 frank, it was a long time ago. The plan was to cover a number of other subjects
 needed to better understand a few concepts behind the role model implementation
 in Rakudo.
+<!--more-->
 
 Unfortunately, it turned out to be one of those perfect examples of the
 principle: "wanna make the God laugh? tell him your plans!" But promise is
@@ -49,4 +50,4 @@ role Foo[::T Numeric] is T { }
 It would make more sense. Of course, the above declaration of `C` is still
 possible, but the whole thing lacks elegance.
 
-Thus, the time for a new PR has come. 
+Thus, the time for a new PR has come.

@@ -17,6 +17,8 @@ distraction project to get some rest from an in-house one I was working on
 lately. But it turned into a kind of a monster which swallowed quite an amount
 of my time. Now I hope it's been worth the efforts.
 
+<!--more-->
+
 Basically, the last straw which convinced me to eventually put everything else
 aside and have this one done was an attempt to develop a model for scalable file
 hosting. I was stuck, no approach I was considering was good enough. And I

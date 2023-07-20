@@ -21,6 +21,8 @@ But then it turns out that I have this bunch of very different PDFs on my hands,
 various software tools, but with one thing in common: they all contain data I must pull in and sort out. Lucky me,
 nobody puts limits on what this has to be implemented in: "Raku? What is it? Whatever, just make it work!" Fantastic!
 
+<!--more-->
+
 Next turn, what do we have for reading PDFs? Oh, oops... Can I convert them into something different? Sure, you can!
 Would you be happy about XML? Er... Well, yes, I suppose.
 

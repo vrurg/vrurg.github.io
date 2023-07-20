@@ -13,6 +13,8 @@ Long time no see, my dear reader! I was planning a lot for this blog, as well as
 for the [Advanced Raku For Beginners](/arfb.html) series. But you know what they
 say: wanna make the God laugh – tell him your plans!
 
+<!--more-->
+
 Anyway, there is one tradition I should try to maintain however hard the times
 are: whenever I introduce something new into the Raku language an update has to
 be published. No exception this time.
@@ -21,7 +23,7 @@ be published. No exception this time.
 
 The idea of it came to be from [discussion about a
 PR](https://github.com/rakudo/rakudo/pull/4840) by @lizmat. The implementation
-as such could have taken less time would I be less busy lately. Anyway, at the 
+as such could have taken less time would I be less busy lately. Anyway, at the
 moment when I'm typing these lines
 [PR#4861](https://github.com/rakudo/rakudo/pull/4861) is undergoing CI testing
 and as soon as it is completed it will be merged into the master. But even
@@ -43,24 +45,24 @@ left behind. See the sections below.
 which didn't pass the type check. The code must return a string to be included
 into exception message. Something stringifiable would also do.
 
-Less words, more examples! 
+Less words, more examples!
 
 ## Type Objects
 
 ```
-my enum FOO 
-    will complain { "need something FOO-ish, got {.raku}" } 
+my enum FOO
+    will complain { "need something FOO-ish, got {.raku}" }
     <foo1 foo2 foo3>;
 ```
 
 ```
-my subset IntD of Int:D 
-    will complain { "only non-zero positive integers, not {.raku}" } 
+my subset IntD of Int:D
+    will complain { "only non-zero positive integers, not {.raku}" }
     where * > 0;
 ```
 
 ```
-my class Bar 
+my class Bar
     will complain -> $val { "need something Bar-like, got {$val.^name}" } {}
 ```
 
@@ -94,9 +96,9 @@ And why not to help yourself with a little luxury of easing debugging when an
 assignment fails:
 
 ```
-my Str $a-lexical 
-   will complain { "string must contain 'foo'" } 
-   where { !.defined || .contains("foo") }; 
+my Str $a-lexical
+   will complain { "string must contain 'foo'" }
+   where { !.defined || .contains("foo") };
 ```
 
 The trait works with hashes and arrays too, except that it is applied not to the
@@ -121,8 +123,8 @@ my %h{IntKey};
 
 ```
 class Foo {
-    has Int $.a 
-        is rw 
+    has Int $.a
+        is rw
         will complain { "you offer me {.raku}, but with all the respect: an integer, please!" };
 }
 ```
@@ -130,13 +132,13 @@ class Foo {
 ## Parameters
 
 ```
-sub foo( Str:D $p will complain { "the first argument must be a string with 'foo'" } 
+sub foo( Str:D $p will complain { "the first argument must be a string with 'foo'" }
                   where *.contains('foo') ) {}
 ```
 
 ## Merge
 
-By this time all CI has passed with no errors and I have merged the PR. 
+By this time all CI has passed with no errors and I have merged the PR.
 
 ## Ukraine
 

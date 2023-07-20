@@ -18,6 +18,8 @@ because Altreus delivers a good (and somewhat emotional 🙂) point on why such
 practice is most definitely bad design decision. Despite having minor
 objections, I generally agree to him.
 
+<!--more-->
+
 But I'm not wearing out my keyboard on this post just to share that discussion.
 There was something in it what made me feel as if I miss something. And it came
 to me a bit later, when I was done with my payjob and got a bit more spare
@@ -25,7 +27,7 @@ resources for the brain to utilize.
 
 First of all, a bell rang when a hash was mentioned as the mediator between a
 database and API return value. I'm somewhat wary about using hashes as return
-values primarily for a reason of performance price and concurrency unsafety. 
+values primarily for a reason of performance price and concurrency unsafety.
 
 Anyway, the discussion went on and came to the point where it touched the ground
 of blacklisting of a DB table fields vs. whitelisting. The latter is really
@@ -44,7 +46,7 @@ different occasion: using a class instance is often preferable over a hash.
 In the light of the JSON/API safety this simple rule gets us to another rather
 interesting aspect. Here is an example SmokeMachine provided on IRC:
 
-    to-json %( name => "{ .first-name } { .last-name }", 
+    to-json %( name => "{ .first-name } { .last-name }",
                password => "***" )
         given $model
 

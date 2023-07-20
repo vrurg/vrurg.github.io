@@ -17,6 +17,8 @@ conditions, causes some external symbols to become invisible for importing code,
 even if explicit `use` statement is used. And, indeed, it is really confusing
 when:
 
+<!--more-->
+
 ```
 use L1::L2::L3::Class;
 L1::L2::L3::Class.new;
@@ -36,8 +38,8 @@ example, it is possible to manually create two _different_ packages with the
 same name:
 
 ```
-my $p1a := Metamodel::PackageHOW.new_type(:name<P1>); 
-my $p1b := Metamodel::PackageHOW.new_type(:name<P1>); 
+my $p1a := Metamodel::PackageHOW.new_type(:name<P1>);
+my $p1b := Metamodel::PackageHOW.new_type(:name<P1>);
 say $p1a.WHICH, " ", $p1a.WHO.WHICH; # P1|U140722834897656 Stash|140723638807008
 say $p1b.WHICH, " ", $p1b.WHO.WHICH; # P1|U140722834897800 Stash|140723638818544
 ```
@@ -336,6 +338,6 @@ worry about multiple stub generated for the same package because each stub will
 be shared by all compunits until, perhaps, the real package is found in one of
 them.
 
-Unfortunately, the complexity of implementing the 'single `GLOBAL`' approach is 
+Unfortunately, the complexity of implementing the 'single `GLOBAL`' approach is
 such that I'm unsure if anybody with appropriate skill could fit it into their
 schedule.
