@@ -147,7 +147,7 @@ There is absolutely nothing funny about it. Just a common way to keep a reader i
 
 Seriously.
 
-There reason for the yada in that snippet is to avoid a distraction from the primary purpose of the example. Here is what is going on there:
+The reason for the yada in that snippet is to avoid a distraction from the primary purpose of the example. Here is what is going on there:
 
 I want `AttrX::Mooish` to do the dirty work for me. Eventually, what is needed is to apply the `is mooish` trait as shown above. But the traits are just subs. Therefore all is needed now is to:
 
